@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const splashTime = 5;
+const splashTime = 2;
 
 // ----- Font Size ----
 // Input
@@ -8,20 +8,6 @@ double inputLabelFontSize = 15;
 double inputHintFontSize = 12;
 // button
 double buttonFontSize = 18;
-
-// ----- Text ----
-// input
-const nameHintText = "jon abraham";
-const emailHintText = "example@gmail.com";
-const phoneNumberHintText = "+8801XXXXXXXXX";
-const passwordHintText = "*******";
-const confirmPasswordHintText = "Confirm Password";
-const forgetPasswordText = "Forget Password";
-const signinText = "Sign in";
-const signupText = "Sign up";
-const createNewAccount = "Create New Account";
-const iHaveAccount = "I have a account";
-const signinWith = "Sign in with";
 
 // Shadow
 //container
@@ -31,3 +17,12 @@ BoxShadow containerBoxShadow = BoxShadow(
   blurRadius: 9,
   offset: const Offset(0, 3),
 );
+
+SizedBox spaceTopBottom = const SizedBox(height: 10);
+
+// button border radious
+double buttonBorderRadious = 5;
+
+// container margin
+EdgeInsets containerMarginLeftRight =
+    EdgeInsets.only(left: 12, right: 12, top: 12);

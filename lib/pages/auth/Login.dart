@@ -7,6 +7,7 @@ import 'package:ecommerce/utils/const.dart';
 import 'package:ecommerce/utils/images.dart';
 import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:flutter/material.dart';
+import "package:ecommerce/utils/string.dart";
 
 class Login extends StatefulWidget {
   @override
@@ -55,10 +56,13 @@ class _LoginState extends State<Login> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                            onPressed: () {},
-                            child: const Text(forgetPasswordText)),
+                          onPressed: () {
+                            goToHomePage(context);
+                          },
+                          child: const Text(forgetPasswordText),
+                        ),
                       ),
-                      customButton(title: signinText),
+                      customButton(title: signinText, btnBgColor: buttonColor),
                       Align(
                         alignment: Alignment.center,
                         child: TextButton(

@@ -7,6 +7,7 @@ import 'package:ecommerce/utils/const.dart';
 import 'package:ecommerce/utils/images.dart';
 import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:flutter/material.dart';
+import "package:ecommerce/utils/string.dart";
 
 class Register extends StatefulWidget {
   @override
@@ -14,11 +15,14 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  bool? isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return bgTopImage(
       child: Scaffold(
         body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Center(
             child: Column(
               children: [
@@ -70,12 +74,53 @@ class _RegisterState extends State<Register> {
                       const SizedBox(
                         height: 10,
                       ),
-                      customButton(title: signupText),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: isChecked,
+                            onChanged: (newValue) {
+                              setState(() {
+                                isChecked = newValue;
+                              });
+                            },
+                          ),
+                          Expanded(
+                            child: RichText(
+                              text: const TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: agreeText,
+                                    style: TextStyle(
+                                      color: agreeTextColor,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: termsAndConditionText,
+                                    style: TextStyle(
+                                      color: termsTextColor,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: " " + and + " " + privacyAndPolicy,
+                                    style: TextStyle(
+                                      color: privacyAndPolicyTextColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      customButton(
+                          title: signupText,
+                          btnBgColor:
+                              isChecked! ? buttonColor : disabledBtnBgColor),
                       Align(
                         alignment: Alignment.center,
                         child: TextButton(
                           onPressed: () {
-                            goToLoginPage(context);
+                            back(context);
                           },
                           child: const Text(iHaveAccount),
                         ),

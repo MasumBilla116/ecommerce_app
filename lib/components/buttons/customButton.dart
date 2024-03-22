@@ -2,10 +2,10 @@ import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/const.dart';
 import 'package:flutter/material.dart';
 
-Widget customButton({String? title}) {
+Widget customButton({String? title, Color? btnBgColor}) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.red,
+      backgroundColor: btnBgColor,
       padding: const EdgeInsets.all(5),
       fixedSize: const Size(500, double.infinity),
     ),
