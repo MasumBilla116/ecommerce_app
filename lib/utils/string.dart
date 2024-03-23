@@ -1,3 +1,18 @@
+// featured text array
+const featuredText1 = [
+  "Womens Dress",
+  "Girls Dress",
+  "Female Beauty",
+];
+
+const featuredText2 = [
+  "Brand Cosmetics",
+  "Girls Ornaments",
+  "Girls Fashion",
+];
+
+const featuredProductText = "Featured Products";
+
 // search text
 const searchHintText = "Search anything ....";
 

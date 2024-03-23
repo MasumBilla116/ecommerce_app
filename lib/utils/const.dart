@@ -24,5 +24,9 @@ SizedBox spaceTopBottom = const SizedBox(height: 10);
 double buttonBorderRadious = 5;
 
 // container margin
-EdgeInsets containerMarginLeftRight =
+const EdgeInsets containerMarginLeftRight =
     EdgeInsets.only(left: 12, right: 12, top: 12);
+
+// container border radious
+const BorderRadius containerBorderRadious =
+    BorderRadius.all(Radius.circular(12));

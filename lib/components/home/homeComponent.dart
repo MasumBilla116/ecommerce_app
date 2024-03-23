@@ -1,9 +1,11 @@
 import 'package:ecommerce/components/buttons/button.dart';
 import 'package:ecommerce/components/carousel/carouselComponent.dart';
+import 'package:ecommerce/components/product/productComponent.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/const.dart';
 import 'package:ecommerce/utils/font.dart';
 import 'package:ecommerce/utils/icons.dart';
+import 'package:ecommerce/utils/images.dart';
 import 'package:ecommerce/utils/padding.dart';
 import 'package:ecommerce/utils/string.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,6 +39,58 @@ class _HomeComponentState extends State<HomeComponent> {
     ),
     Image(image: AssetImage("assets/images/carousel/add-3.jpeg")),
     Image(image: AssetImage("assets/images/carousel/add-1.jpg")),
+  ];
+
+  final products = [
+    {
+      "image": "assets/images/brands/p1.jpeg",
+      "description":
+          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
+      "price": "550",
+      "discount": "10"
+    },
+    {
+      "image": "assets/images/brands/p2.jpeg",
+      "description":
+          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
+      "price": "650",
+      "discount": "15"
+    },
+    {
+      "image": "assets/images/brands/p3.jpeg",
+      "description":
+          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
+      "price": "650",
+      "discount": "15"
+    },
+    {
+      "image": "assets/images/brands/p4.jpeg",
+      "description":
+          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
+      "price": "650",
+      "discount": "15"
+    },
+    {
+      "image": "assets/images/brands/p5.jpeg",
+      "description":
+          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
+      "price": "650",
+      "discount": "15"
+    },
+    {
+      "image": "assets/images/brands/p6.jpeg",
+      "description":
+          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
+      "price": "650",
+      "discount": "15"
+    },
+    {
+      "image": "assets/images/brands/p7.jpeg",
+      "description":
+          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
+      "price": "650",
+      "discount": "15"
+    }
   ];
 
   @override
@@ -141,66 +195,72 @@ class _HomeComponentState extends State<HomeComponent> {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: containerMarginLeftRight,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          featuredCategoriesText,
-                          style: sectionTitleTextStyle,
+                    spaceTopBottom,
+                    // Featured category buttons
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: List.generate(
+                          3,
+                          (index) => Column(
+                            children: [
+                              button(
+                                width: MediaQuery.of(context).size.width / 1.8,
+                                height: MediaQuery.of(context).size.height * .1,
+                                marginLeft: 13.0,
+                                title: featuredText1[index],
+                                imagePath: featuredImagesList1[index],
+                                buttonTextColor: buttonTextBlackColor,
+                              ),
+                              spaceTopBottom,
+                              button(
+                                width: MediaQuery.of(context).size.width / 1.8,
+                                height: MediaQuery.of(context).size.height * .1,
+                                marginLeft: 13.0,
+                                title: featuredText2[index],
+                                imagePath: featuredImagesList2[index],
+                                buttonTextColor: buttonTextBlackColor,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
+
+                    // featured product
                     Container(
-                      margin: containerMarginLeftRight,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          featuredCategoriesText,
-                          style: sectionTitleTextStyle,
-                        ),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: const BoxDecoration(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: containerMarginLeftRight,
+                            child: Text(
+                              featuredProductText,
+                              style: sectionTitleTextStyle,
+                            ),
+                          ),
+                          spaceTopBottom,
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: List.generate(
+                                      products.length,
+                                      (index) =>
+                                          productComponent(products[index])),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Container(
-                      margin: containerMarginLeftRight,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          featuredCategoriesText,
-                          style: sectionTitleTextStyle,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: containerMarginLeftRight,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          featuredCategoriesText,
-                          style: sectionTitleTextStyle,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: containerMarginLeftRight,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          featuredCategoriesText,
-                          style: sectionTitleTextStyle,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: containerMarginLeftRight,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          featuredCategoriesText,
-                          style: sectionTitleTextStyle,
-                        ),
-                      ),
-                    ),
+                    spaceTopBottom,
                   ],
                 ),
               ),

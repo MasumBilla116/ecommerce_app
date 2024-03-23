@@ -10,13 +10,18 @@ const Color darkColor = Color.fromARGB(255, 97, 97, 97);
 
 // Background color
 const Color bgColor = Color.fromARGB(255, 158, 1, 93);
+const Color bgRedColor = Colors.red;
 
+// text Color
+const Color textColor = Colors.grey;
 // Button color
 const Color buttonColor = Colors.red;
 const Color buttonTextColor = Colors.white;
+const Color buttonTextBlackColor = Color.fromARGB(255, 44, 44, 44);
 const Color buttonTextGreyColor = Colors.grey;
 const Color buttonTextGreyLightColor = Color.fromARGB(255, 212, 212, 212);
 const Color disabledBtnBgColor = Color.fromARGB(255, 248, 248, 248);
+
 // button icon color
 const Color buttonBlueIconColor = Colors.blue;
 const Color buttonRedIconColor = Colors.red;
