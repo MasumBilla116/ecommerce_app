@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // app
 const appName = "Shopping Mart";
+const currency = "Tk";
 
 // login title
 Widget loginTitle({Color? textColor = Colors.white, double? fontSize = 15}) {

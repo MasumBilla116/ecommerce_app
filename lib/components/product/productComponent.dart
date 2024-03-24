@@ -1,14 +1,24 @@
-import 'package:ecommerce/utils/colors.dart';
-import 'package:ecommerce/utils/const.dart';
+import 'package:ecommerce/utils/app.dart';
 import 'package:ecommerce/utils/font.dart';
 import 'package:flutter/material.dart';
 
-Widget productComponent(Map<String, dynamic> product) {
+Widget productComponent(Map<String, dynamic> product,
+    {descriptionShow = false}) {
+  double discountPrice = 0;
+  double lessPrice = 0.0;
+
+  if (product['discount'] != null) {
+    lessPrice =
+        (double.parse(product['discount']) * double.parse(product['price'])) /
+            100;
+    discountPrice = double.parse(product['price']) - lessPrice;
+  }
+
   return Container(
     margin: const EdgeInsets.only(right: 15, left: 15),
     width: 250,
     padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.all(Radius.circular(12)),
     ),
@@ -16,35 +26,37 @@ Widget productComponent(Map<String, dynamic> product) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (product["image"] != null) Image.asset(product["image"]),
-        if (product["description"] != null)
+        if (product["description"] != null && descriptionShow == true)
           Text(
-            product["description"],
-            style: TextStyle(
-              color: Colors.black, // Assuming textColor is defined elsewhere
-            ),
+            product["description"].length > 210
+                ? product['description'].substring(0, 210) + "......"
+                : product['description'],
+            style: productDescriptionTextStyle,
             textAlign: TextAlign.justify,
           ),
-        spaceTopBottom,
+        if (product["title"] != null)
+          Text(
+            product["title"],
+            style: productTitleTextStyle,
+          ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             if (product['discount'] != null)
               Text(
                 "${product['discount']}% OFF",
-                style: const TextStyle(fontSize: 18, color: bgRedColor),
+                style: productDiscountTextStyle,
               ),
+            const Spacer(),
             if (product['discount'] != null)
               Text(
-                "${product['price']} Tk",
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: textColor,
-                  decoration: TextDecoration.lineThrough,
-                ),
+                "${product['price']}$currency",
+                style: productDiscountPriceStyle,
               ),
+            const Spacer(),
             if (product["price"] != null)
               Text(
-                "${product["price"]} Tk.",
+                "$discountPrice $currency.",
                 style: sectionTitleTextStyle,
               ),
           ],

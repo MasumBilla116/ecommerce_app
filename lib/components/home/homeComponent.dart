@@ -44,6 +44,7 @@ class _HomeComponentState extends State<HomeComponent> {
   final products = [
     {
       "image": "assets/images/brands/p1.jpeg",
+      "title": "ASUS Laptop. (Core 8)",
       "description":
           "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
       "price": "550",
@@ -51,6 +52,7 @@ class _HomeComponentState extends State<HomeComponent> {
     },
     {
       "image": "assets/images/brands/p2.jpeg",
+      "title": "Modern Cosmetics.",
       "description":
           "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
       "price": "650",
@@ -58,6 +60,7 @@ class _HomeComponentState extends State<HomeComponent> {
     },
     {
       "image": "assets/images/brands/p3.jpeg",
+      "title": "HP Laptop. (Core 5)",
       "description":
           "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
       "price": "650",
@@ -65,6 +68,7 @@ class _HomeComponentState extends State<HomeComponent> {
     },
     {
       "image": "assets/images/brands/p4.jpeg",
+      "title": "Lotto Ladies Shoes",
       "description":
           "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
       "price": "650",
@@ -72,6 +76,7 @@ class _HomeComponentState extends State<HomeComponent> {
     },
     {
       "image": "assets/images/brands/p5.jpeg",
+      "title": "Ladies Lather Bag",
       "description":
           "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
       "price": "650",
@@ -79,6 +84,7 @@ class _HomeComponentState extends State<HomeComponent> {
     },
     {
       "image": "assets/images/brands/p6.jpeg",
+      "title": "Lotto Ladies Sport Shoes",
       "description":
           "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
       "price": "650",
@@ -86,6 +92,7 @@ class _HomeComponentState extends State<HomeComponent> {
     },
     {
       "image": "assets/images/brands/p7.jpeg",
+      "title": "Ladies Sunglasses",
       "description":
           "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
       "price": "650",
@@ -130,7 +137,7 @@ class _HomeComponentState extends State<HomeComponent> {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    // top carousel
+                    // carousel Component 1
                     CarouselComponent(topSlideItems),
                     spaceTopBottom,
                     // buttons
@@ -153,7 +160,7 @@ class _HomeComponentState extends State<HomeComponent> {
                       ),
                     ),
                     spaceTopBottom,
-                    // middle carousel
+                    // carousel Component 2
                     CarouselComponent(secondSlideItems),
                     spaceTopBottom,
                     // buttons
@@ -195,7 +202,7 @@ class _HomeComponentState extends State<HomeComponent> {
                         ),
                       ),
                     ),
-                    spaceTopBottom,
+                    spaceTopBottomSectionTitle,
                     // Featured category buttons
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -227,7 +234,7 @@ class _HomeComponentState extends State<HomeComponent> {
                         ),
                       ),
                     ),
-
+                    spaceTopBottom,
                     // featured product
                     Container(
                       width: MediaQuery.of(context).size.width,
@@ -242,7 +249,7 @@ class _HomeComponentState extends State<HomeComponent> {
                               style: sectionTitleTextStyle,
                             ),
                           ),
-                          spaceTopBottom,
+                          spaceTopBottomSectionTitle,
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Column(
@@ -261,6 +268,10 @@ class _HomeComponentState extends State<HomeComponent> {
                       ),
                     ),
                     spaceTopBottom,
+                    // carousel Component 3
+                    CarouselComponent(secondSlideItems),
+                    spaceTopBottom,
+                    // products
                   ],
                 ),
               ),

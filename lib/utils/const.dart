@@ -18,7 +18,8 @@ BoxShadow containerBoxShadow = BoxShadow(
   offset: const Offset(0, 3),
 );
 
-SizedBox spaceTopBottom = const SizedBox(height: 10);
+SizedBox spaceTopBottom = const SizedBox(height: 20);
+SizedBox spaceTopBottomSectionTitle = const SizedBox(height: 10);
 
 // button border radious
 double buttonBorderRadious = 5;
