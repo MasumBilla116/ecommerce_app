@@ -1,10 +1,12 @@
+import 'package:ecommerce/components/navigation/bottomNavigationController.dart';
 import 'package:ecommerce/controllers/homeController.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
 import 'package:ecommerce/utils/string.dart';
 import 'package:flutter/material.dart';
 
-Widget bottomNavigation(HomeController controller, setState) {
+Widget bottomNavigation(
+    BottomNavigationController btmNavigationController, setState) {
   return BottomNavigationBar(
     items: const [
       BottomNavigationBarItem(icon: homeIcon, label: homeLabel),
@@ -12,7 +14,7 @@ Widget bottomNavigation(HomeController controller, setState) {
       BottomNavigationBarItem(icon: shoppingCartIcon, label: cartLabel),
       BottomNavigationBarItem(icon: personIcon, label: profileLabel),
     ],
-    currentIndex: controller.currentNavIndex,
+    currentIndex: btmNavigationController.navigationIndex,
     backgroundColor: navigationBgColor,
     selectedItemColor: navigationItemSelectedColor,
     selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
@@ -20,7 +22,7 @@ Widget bottomNavigation(HomeController controller, setState) {
     type: BottomNavigationBarType.fixed,
     onTap: (value) {
       setState(() {
-        controller.currentNavIndex = value;
+        btmNavigationController.navigationIndex = value;
       });
     },
   );

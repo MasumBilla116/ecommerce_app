@@ -1,3 +1,4 @@
+import 'package:ecommerce/components/category/categoryProductComponent.dart';
 import 'package:ecommerce/pages/Home.dart';
 import 'package:ecommerce/pages/auth/Login.dart';
 import 'package:ecommerce/pages/auth/Register.dart';
@@ -25,5 +26,16 @@ goToRegisterPage(BuildContext context) {
 }
 
 back(BuildContext context) {
-  Navigator.pop(context);
+  Navigator.of(context).pop();
+}
+
+goToCategoryProductPage(BuildContext context, categoryId, categoryName) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (context) => CategoryProductComponent(
+              categoryId: categoryId,
+              categoryName: categoryName,
+            )),
+  );
 }

@@ -1,6 +1,9 @@
 import 'package:ecommerce/components/buttons/button.dart';
 import 'package:ecommerce/components/carousel/carouselComponent.dart';
+import 'package:ecommerce/components/product/allProductsComponent.dart';
 import 'package:ecommerce/components/product/productComponent.dart';
+import 'package:ecommerce/components/product/productGridViewComponent.dart';
+import 'package:ecommerce/components/section/sectionTitleComponent.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/const.dart';
 import 'package:ecommerce/utils/font.dart';
@@ -103,7 +106,6 @@ class _HomeComponentState extends State<HomeComponent> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: commonComponentPadding,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       color: componentBgColor,
@@ -192,17 +194,7 @@ class _HomeComponentState extends State<HomeComponent> {
                     ),
                     spaceTopBottom,
                     // featured Category
-                    Container(
-                      margin: containerMarginLeftRight,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          featuredCategoriesText,
-                          style: sectionTitleTextStyle,
-                        ),
-                      ),
-                    ),
-                    spaceTopBottomSectionTitle,
+                    sectionTitleComponent(featuredCategoriesText),
                     // Featured category buttons
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -235,6 +227,8 @@ class _HomeComponentState extends State<HomeComponent> {
                       ),
                     ),
                     spaceTopBottom,
+                    // Featured product title
+                    sectionTitleComponent(featuredProductText),
                     // featured product
                     Container(
                       width: MediaQuery.of(context).size.width,
@@ -242,14 +236,6 @@ class _HomeComponentState extends State<HomeComponent> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            margin: containerMarginLeftRight,
-                            child: Text(
-                              featuredProductText,
-                              style: sectionTitleTextStyle,
-                            ),
-                          ),
-                          spaceTopBottomSectionTitle,
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Column(
@@ -270,8 +256,11 @@ class _HomeComponentState extends State<HomeComponent> {
                     spaceTopBottom,
                     // carousel Component 3
                     CarouselComponent(secondSlideItems),
-                    spaceTopBottom,
                     // products
+                    spaceTopBottom,
+                    sectionTitleComponent("All Products"),
+                    allProductsComponent(),
+                    spaceTopBottom,
                   ],
                 ),
               ),

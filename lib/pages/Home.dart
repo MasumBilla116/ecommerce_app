@@ -2,6 +2,7 @@ import 'package:ecommerce/components/cart/cartComponent.dart';
 import 'package:ecommerce/components/category/categoryComponent.dart';
 import 'package:ecommerce/components/home/homeComponent.dart';
 import 'package:ecommerce/components/navigation/bottomNavigation.dart';
+import 'package:ecommerce/components/navigation/bottomNavigationController.dart';
 import 'package:ecommerce/components/profile/profileComponent.dart';
 import 'package:ecommerce/controllers/homeController.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +16,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // init home controller
   var controller = HomeController();
+  var btmNavigationController = BottomNavigationController();
   @override
   void initState() {
     super.initState();
@@ -23,15 +25,17 @@ class _HomeState extends State<Home> {
   //
   var navigationTabItems = [
     HomeComponent(),
-    CategoryComponent(),
+    CategoryComponent(
+      btmNavigationController: BottomNavigationController(),
+    ),
     CartComponent(),
     ProfileComponent(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: bottomNavigation(controller, setState),
-      body: navigationTabItems[controller.currentNavIndex],
+      bottomNavigationBar: bottomNavigation(btmNavigationController, setState),
+      body: navigationTabItems[btmNavigationController.navigationIndex],
     );
   }
 }
