@@ -259,7 +259,7 @@ class _HomeComponentState extends State<HomeComponent> {
                     // products
                     spaceTopBottom,
                     sectionTitleComponent("All Products"),
-                    allProductsComponent(),
+                    allProductsComponent(context),
                     spaceTopBottom,
                   ],
                 ),

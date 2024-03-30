@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // Direct Icon Provider
 const homeIcon = Icon(CupertinoIcons.home);
@@ -10,6 +11,12 @@ const giftBoxIcon = Icon(CupertinoIcons.gift);
 const flashIcon = Icon(CupertinoIcons.bolt);
 const lightBulbIcon = Icon(CupertinoIcons.lightbulb);
 const fireIcon = Icon(CupertinoIcons.flame);
+const shareIcon = Icon(Icons.share);
+const loveIcon = Icon(CupertinoIcons.suit_heart);
+const loveFillIcon = Icon(
+  CupertinoIcons.suit_heart_fill,
+);
+const arrowTurnUpLeftIcon = Icon(CupertinoIcons.arrow_turn_up_left);
 
 // Only Icon Provider
 const onlyHomeIcon = CupertinoIcons.home;
@@ -21,3 +28,7 @@ const onlyGiftBoxIcon = CupertinoIcons.gift;
 const onlyFlashDealIcon = CupertinoIcons.bolt;
 const onlyLightBulbIcon = CupertinoIcons.lightbulb;
 const onlyFireIcon = CupertinoIcons.flame;
+const onlyShareIcon = Icons.share;
+const onlyLoveIcon = CupertinoIcons.suit_heart;
+const onlyLoveFillIcon = CupertinoIcons.suit_heart_fill;
+const onlyArrowTurnUpLeftIcon = CupertinoIcons.arrow_turn_up_left;

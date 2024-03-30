@@ -1,8 +1,14 @@
 import 'package:ecommerce/components/splash_screen.dart';
 import 'package:ecommerce/pages/Home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  // SystemChrome.setSystemUIOverlayStyle(
+  //   SystemUiOverlayStyle(
+  //     statusBarIconBrightness: Brightness.dark,
+  //   ),
+  // );
   runApp(const MyApp());
 }
 

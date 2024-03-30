@@ -3,7 +3,7 @@ import "package:ecommerce/components/section/sectionTitleComponent.dart";
 import "package:ecommerce/utils/const.dart";
 import "package:flutter/material.dart";
 
-Widget allProductsComponent() {
+Widget allProductsComponent(BuildContext context) {
   final products = [
     {
       "image": "assets/images/brands/p1.jpeg",
@@ -81,7 +81,7 @@ Widget allProductsComponent() {
       physics: const NeverScrollableScrollPhysics(),
       children: List.generate(
         products.length,
-        (index) => productGridViewComponent(products[index]),
+        (index) => productGridViewComponent(context, products[index]),
       ),
     )
   ]);
