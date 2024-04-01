@@ -32,3 +32,4 @@ const onlyShareIcon = Icons.share;
 const onlyLoveIcon = CupertinoIcons.suit_heart;
 const onlyLoveFillIcon = CupertinoIcons.suit_heart_fill;
 const onlyArrowTurnUpLeftIcon = CupertinoIcons.arrow_turn_up_left;
+const onlyVerifiedIcon = Icons.verified;

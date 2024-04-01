@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // common color
 const Color whiteColor = Colors.white;
 const Color greyColor = Colors.grey;
+const Color greenColor = Colors.green;
 const Color greyLightColor = Color.fromARGB(255, 221, 221, 221);
 const Color componentBgColor = Color.fromARGB(255, 236, 236, 236);
 const Color lightBlueColor = Color.fromARGB(255, 180, 239, 247);
@@ -11,6 +12,7 @@ const Color redColor = Colors.red;
 const Color lightRedColor = Color.fromARGB(143, 244, 67, 54);
 const Color blueColor = Colors.blue;
 const Color orangeColor = Colors.orange;
+const Color transparentColor = Colors.transparent;
 
 // Background color
 const Color bgColor = Color.fromARGB(255, 158, 1, 93);

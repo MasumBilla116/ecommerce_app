@@ -57,3 +57,6 @@ const signinWith = "Sign in with";
 const agreeText = "I agree with ";
 const termsAndConditionText = " terms and condition";
 const privacyAndPolicy = " Privacy and policy ";
+
+// auth
+const verifiedText = "Verified";

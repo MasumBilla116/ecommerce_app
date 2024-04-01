@@ -1,9 +1,11 @@
 import 'package:ecommerce/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-Widget IconButtonComponent(bgColor, icon) {
+Widget IconButtonComponent(method, bgColor, icon) {
   return ElevatedButton(
-    onPressed: () {},
+    onPressed: () {
+      method();
+    },
     child: icon,
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all(bgColor),
@@ -12,7 +14,7 @@ Widget IconButtonComponent(bgColor, icon) {
         EdgeInsets.zero,
       ),
       shape: MaterialStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       ),
     ),
   );
