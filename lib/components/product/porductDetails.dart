@@ -1,4 +1,5 @@
 import 'package:ecommerce/components/background/BgTopImage.dart';
+import 'package:ecommerce/components/buttons/addToCardButton.dart';
 import 'package:ecommerce/components/buttons/iconButtonComponent.dart';
 import 'package:ecommerce/components/carousel/carouselComponent.dart';
 import 'package:ecommerce/components/carousel/carouselIndicatorComponent.dart';
@@ -158,6 +159,27 @@ class _ProductDetails extends State<ProductDetails> {
                     width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.all(10),
                     color: const Color.fromARGB(25, 158, 158, 158),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "1 PIECES 180/- TK",
+                          style: TextStyle(
+                              color: darkColor, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          "1 BOUNDLE 1200/- TK",
+                          style: TextStyle(
+                              color: darkColor, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.all(10),
+                    color: const Color.fromARGB(25, 158, 158, 158),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,7 +206,6 @@ class _ProductDetails extends State<ProductDetails> {
                         //     ),
                         //   ],
                         // ),
-                        topBottomContentSpace,
                         Row(
                           children: [
                             CircleAvatar(
@@ -322,7 +343,12 @@ class _ProductDetails extends State<ProductDetails> {
                         //     ),
                         //   ),
                         // ),
-
+                        // add to card button
+                        topBottomContentSpace,
+                        topBottomContentSpace,
+                        AddToCardButton(),
+                        // tap component
+                        topBottomContentSpace,
                         topBottomContentSpace,
                         Container(
                           width: MediaQuery.of(context).size.width,
@@ -331,6 +357,7 @@ class _ProductDetails extends State<ProductDetails> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
+                              // tab options
                               TabComponent(
                                 width: MediaQuery.of(context).size.width - 38,
                                 buttons: tabButtons,

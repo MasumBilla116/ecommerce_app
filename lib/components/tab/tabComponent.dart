@@ -1,3 +1,4 @@
+import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/const.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,7 +35,10 @@ class _TabComponent extends State<TabComponent> {
           width: widget.width,
           height: 30,
           decoration: BoxDecoration(
-              color: whiteColor, borderRadius: BorderRadius.circular(15)),
+            color: Color.fromARGB(29, 0, 255, 8),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Color.fromARGB(192, 0, 253, 8), width: 1),
+          ),
           child: Row(
             children: [
               Expanded(
@@ -43,7 +47,7 @@ class _TabComponent extends State<TabComponent> {
                     tabHandler(0);
                   },
                   child: Text(
-                    "1 PIECES PRICE",
+                    Language.load("one_piece_price"),
                     style: TextStyle(
                         color: activeTab == 0 ? whiteColor : darkColor),
                   ),
@@ -59,7 +63,7 @@ class _TabComponent extends State<TabComponent> {
                     tabHandler(1);
                   },
                   child: Text(
-                    "1 BUNDLE PRICE",
+                    Language.load("one_bundle_price"),
                     style: TextStyle(
                         color: activeTab == 1 ? whiteColor : darkColor),
                   ),
@@ -72,14 +76,14 @@ class _TabComponent extends State<TabComponent> {
             ],
           ),
         ),
-        if (activeTab == 0) TabContent(widget.width),
-        if (activeTab == 1) TabContent(widget.width),
+        if (activeTab == 0) TabContent(widget.width, "1 PIECES 180"),
+        if (activeTab == 1) TabContent(widget.width, "1 BUNDLE 1200"),
       ],
     );
   }
 }
 
-Widget TabContent(width) {
+Widget TabContent(width, title) {
   return Container(
     width: width,
     decoration: BoxDecoration(
@@ -94,11 +98,12 @@ Widget TabContent(width) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Row(
+        Row(
           children: [
             Text(
-              "1 PIECES 550/- TK ",
-              style: TextStyle(fontWeight: FontWeight.bold, color: orangeColor),
+              title,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: orangeColor),
             ),
           ],
         ),
