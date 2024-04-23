@@ -1,12 +1,17 @@
 import 'package:ecommerce/components/cart/cartComponent.dart';
-import 'package:ecommerce/components/category/categoryComponent.dart';
 import 'package:ecommerce/components/home/homeComponent.dart';
 import 'package:ecommerce/components/navigation/bottomNavigation.dart';
 import 'package:ecommerce/components/navigation/bottomNavigationController.dart';
 import 'package:ecommerce/components/profile/profileComponent.dart';
 import 'package:ecommerce/controllers/homeController.dart';
+import 'package:ecommerce/pages/CartPage.dart';
+import 'package:ecommerce/pages/CategoryPage.dart';
+import 'package:ecommerce/pages/ProfilePage.dart';
+import 'package:ecommerce/utils/colors.dart';
+import 'package:ecommerce/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import "package:hive_flutter/hive_flutter.dart";
 
 class Home extends StatefulWidget {
   @override
@@ -14,28 +19,140 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final _languageBox = Hive.box("languageBox");
+// init langage
+  String systemLanguage = '';
   // init home controller
   var controller = HomeController();
   var btmNavigationController = BottomNavigationController();
   @override
   void initState() {
     super.initState();
+    final default_lang = _languageBox.get("lang");
+    if (default_lang != null) {
+      systemLanguage = default_lang;
+    }
   }
 
   //
   var navigationTabItems = [
     HomeComponent(),
-    CategoryComponent(
+    CategoryPage(
       btmNavigationController: BottomNavigationController(),
     ),
-    CartComponent(),
-    ProfileComponent(),
+    CartPage(),
+    ProfilePage(),
   ];
+
+  void changeLanguage(BuildContext context) {
+    showDialog(
+        context: context, builder: (context) => _changeLanguage(context));
+  }
+
+  // set language
+  void setSystemLanguage() {
+    _languageBox.put("lang", systemLanguage);
+  }
+
+  Widget _changeLanguage(BuildContext context) {
+    return StatefulBuilder(
+      builder: (context, setState) => AlertDialog(
+        title: const Text("Change Language"),
+        insetPadding: const EdgeInsets.all(12),
+        contentPadding: const EdgeInsets.all(12),
+        titleTextStyle: const TextStyle(
+            fontSize: 18, color: darkColor, fontWeight: FontWeight.w400),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RadioListTile(
+              value: "english",
+              groupValue: systemLanguage,
+              title: const Text("English"),
+              onChanged: (String? value) {
+                setState(() {
+                  systemLanguage = value as String;
+                });
+              },
+            ),
+            RadioListTile(
+                value: "bangla",
+                groupValue: systemLanguage,
+                title: const Text("Bangla"),
+                onChanged: (String? value) {
+                  setState(() {
+                    systemLanguage = value as String;
+                  });
+                })
+          ],
+        ),
+        actions: [
+          TextButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(redColor)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              "Cancel",
+              style: TextStyle(color: whiteColor),
+            ),
+          ),
+          TextButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(greenColor)),
+            onPressed: () {
+              setSystemLanguage();
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/',
+                (Route<dynamic> route) => false,
+              );
+            },
+            child: const Text(
+              "Change",
+              style: TextStyle(color: whiteColor),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: bottomNavigation(btmNavigationController, setState),
       body: navigationTabItems[btmNavigationController.navigationIndex],
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.menu),
+          color: whiteColor,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: searchIcon,
+            color: whiteColor,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: shoppingCartIcon,
+            color: whiteColor,
+          ),
+          IconButton(
+            onPressed: () {
+              changeLanguage(context);
+            },
+            icon: const Icon(Icons.language),
+            color: whiteColor,
+          ),
+        ],
+      ),
     );
   }
 }

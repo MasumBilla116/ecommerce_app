@@ -93,13 +93,10 @@ class _ProductDetails extends State<ProductDetails> {
               },
               icon: shareIcon,
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(whiteColor),
-                elevation: MaterialStateProperty.all(4),
-                iconColor:
-                    MaterialStateProperty.all(isShare ? blueColor : greyColor),
-                shadowColor: MaterialStateProperty.all(
-                  Colors.black.withOpacity(0.8),
-                ),
+                backgroundColor:
+                    MaterialStateProperty.all(Color.fromARGB(255, 1, 110, 83)),
+                iconColor: MaterialStateProperty.all(
+                    isShare ? orangeColor : whiteColor),
               ),
             ),
             IconButton(
@@ -108,11 +105,9 @@ class _ProductDetails extends State<ProductDetails> {
               },
               icon: bookMark ? loveFillIcon : loveIcon,
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(whiteColor),
-                elevation: MaterialStateProperty.all(4),
-                iconColor: MaterialStateProperty.all(lightRedColor),
-                shadowColor:
-                    MaterialStateProperty.all(Colors.black.withOpacity(0.8)),
+                backgroundColor:
+                    MaterialStateProperty.all(Color.fromARGB(255, 1, 110, 83)),
+                iconColor: MaterialStateProperty.all(orangeColor),
               ),
             ),
             const SizedBox(
@@ -125,12 +120,9 @@ class _ProductDetails extends State<ProductDetails> {
             },
             icon: arrowTurnUpLeftIcon,
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(whiteColor),
-              elevation: MaterialStateProperty.all(5),
-              iconColor: MaterialStateProperty.all(greyColor),
-              shadowColor: MaterialStateProperty.all(
-                Colors.black.withOpacity(0.8),
-              ),
+              backgroundColor:
+                  MaterialStateProperty.all(Color.fromARGB(255, 1, 110, 83)),
+              iconColor: MaterialStateProperty.all(whiteColor),
             ),
           ),
         ),

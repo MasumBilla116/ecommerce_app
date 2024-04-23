@@ -1,7 +1,14 @@
 Map<String, String> lang = {
+  'home': 'Home',
+  'category': 'Category',
+  'cart': 'Cart',
+  'profile': 'Profile',
   'add_to_cart': 'Add to Cart',
   'view_cart': 'View Cart',
   'checkout': 'Checkout',
+  'feature_product': "Feature Product",
+  'brand_product': "Brand Product",
+  'all_products': "All Products",
   'product_details': 'Product Details',
   'quantity': 'Quantity',
   'price': 'Price',
@@ -40,6 +47,8 @@ Map<String, String> lang = {
   'remember_me': 'Remember Me',
   'login_with_google': 'Login with Google',
   'login_with_facebook': 'Login with Facebook',
+  'show_more': "Show More",
+  "load_more": "Load More",
 };
 
 String getEnglishLang(String key) {

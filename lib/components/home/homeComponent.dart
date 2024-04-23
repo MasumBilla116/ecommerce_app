@@ -4,6 +4,7 @@ import 'package:ecommerce/components/product/allProductsComponent.dart';
 import 'package:ecommerce/components/product/productComponent.dart';
 import 'package:ecommerce/components/product/productGridViewComponent.dart';
 import 'package:ecommerce/components/section/sectionTitleComponent.dart';
+import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/const.dart';
 import 'package:ecommerce/utils/font.dart';
@@ -108,31 +109,9 @@ class _HomeComponentState extends State<HomeComponent> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      color: componentBgColor,
       child: SafeArea(
         child: Column(
           children: [
-            // search bar
-            Container(
-              height: 50,
-              margin: containerMarginLeftRight,
-              alignment: Alignment.topCenter,
-              color: lightBlueColor,
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  suffixIcon: searchIcon,
-                  suffixIconColor: inputHintColor,
-                  filled: true,
-                  fillColor: inputFillColorWhite,
-                  hintText: searchHintText,
-                  border: InputBorder.none,
-                  hintStyle: TextStyle(
-                    color: inputHintColor,
-                  ),
-                ),
-              ),
-            ),
-            spaceTopBottom,
             // scrollable
             Expanded(
               child: SingleChildScrollView(
@@ -140,6 +119,7 @@ class _HomeComponentState extends State<HomeComponent> {
                 child: Column(
                   children: [
                     // carousel Component 1
+                    spaceTopBottom,
                     CarouselComponent(topSlideItems),
                     spaceTopBottom,
                     // buttons
@@ -194,7 +174,7 @@ class _HomeComponentState extends State<HomeComponent> {
                     ),
                     spaceTopBottom,
                     // featured Category
-                    sectionTitleComponent(featuredCategoriesText),
+                    sectionTitleComponent(Language.load("brand_product")),
                     // Featured category buttons
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -228,7 +208,7 @@ class _HomeComponentState extends State<HomeComponent> {
                     ),
                     spaceTopBottom,
                     // Featured product title
-                    sectionTitleComponent(featuredProductText),
+                    sectionTitleComponent(Language.load("feature_product")),
                     // featured product
                     Container(
                       width: MediaQuery.of(context).size.width,
@@ -258,7 +238,7 @@ class _HomeComponentState extends State<HomeComponent> {
                     CarouselComponent(secondSlideItems),
                     // products
                     spaceTopBottom,
-                    sectionTitleComponent("All Products"),
+                    sectionTitleComponent(Language.load("all_products")),
                     allProductsComponent(context),
                     spaceTopBottom,
                   ],

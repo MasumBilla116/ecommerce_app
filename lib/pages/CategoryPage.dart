@@ -1,20 +1,21 @@
 import 'package:ecommerce/components/background/BgTopImage.dart';
 import 'package:ecommerce/components/navigation/bottomNavigationController.dart';
 import 'package:ecommerce/components/product/allProductsComponent.dart';
+import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:ecommerce/utils/string.dart';
 import 'package:flutter/material.dart';
 
-class CategoryComponent extends StatefulWidget {
+class CategoryPage extends StatefulWidget {
   final BottomNavigationController btmNavigationController;
-  const CategoryComponent({required this.btmNavigationController, Key? key})
+  const CategoryPage({required this.btmNavigationController, Key? key})
       : super(key: key);
   @override
-  State<CategoryComponent> createState() => _CategoryComponentState();
+  State<CategoryPage> createState() => _CategoryPageState();
 }
 
-class _CategoryComponentState extends State<CategoryComponent> {
+class _CategoryPageState extends State<CategoryPage> {
   final categories = [
     {
       "image": "assets/images/brands/p1.jpeg",
@@ -142,23 +143,19 @@ class _CategoryComponentState extends State<CategoryComponent> {
     return bgTopImage(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            categoryText,
-            style: TextStyle(color: whiteColor),
+          title: Text(
+            Language.load("category"),
+            style: const TextStyle(color: whiteColor),
           ),
-          // leading: IconButton(
-          //   onPressed: () {
-          //     back(context);
-          //   },
-          //   icon: Icon(Icons.arrow_back),
-          // ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(
+        body: Container(
+          margin: const EdgeInsets.only(
             left: 12,
             right: 12,
             bottom: 5,
+            top: 12,
           ),
+          color: Colors.transparent,
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
@@ -174,7 +171,7 @@ class _CategoryComponentState extends State<CategoryComponent> {
                   onPressed: () =>
                       {goToCategoryProductPage(context, index, name)},
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.zero, // Remove any default padding
+                    padding: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),

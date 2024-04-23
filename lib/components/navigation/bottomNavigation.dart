@@ -1,18 +1,20 @@
 import 'package:ecommerce/components/navigation/bottomNavigationController.dart';
-import 'package:ecommerce/controllers/homeController.dart';
+import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
-import 'package:ecommerce/utils/string.dart';
 import 'package:flutter/material.dart';
 
 Widget bottomNavigation(
     BottomNavigationController btmNavigationController, setState) {
   return BottomNavigationBar(
-    items: const [
-      BottomNavigationBarItem(icon: homeIcon, label: homeLabel),
-      BottomNavigationBarItem(icon: categoryIcon, label: categoryLabel),
-      BottomNavigationBarItem(icon: shoppingCartIcon, label: cartLabel),
-      BottomNavigationBarItem(icon: personIcon, label: profileLabel),
+    items: [
+      BottomNavigationBarItem(icon: homeIcon, label: Language.load("home")),
+      BottomNavigationBarItem(
+          icon: categoryIcon, label: Language.load("category")),
+      BottomNavigationBarItem(
+          icon: shoppingCartIcon, label: Language.load("cart")),
+      BottomNavigationBarItem(
+          icon: personIcon, label: Language.load("profile")),
     ],
     currentIndex: btmNavigationController.navigationIndex,
     backgroundColor: navigationBgColor,

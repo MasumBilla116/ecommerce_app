@@ -1,5 +1,6 @@
 import 'package:ecommerce/components/category/categoryProductComponent.dart';
 import 'package:ecommerce/components/product/porductDetails.dart';
+import 'package:ecommerce/pages/CategoruProductsPage.dart';
 import 'package:ecommerce/pages/Home.dart';
 import 'package:ecommerce/pages/auth/Login.dart';
 import 'package:ecommerce/pages/auth/Register.dart';
@@ -34,7 +35,7 @@ goToCategoryProductPage(BuildContext context, categoryId, categoryName) {
   Navigator.push(
     context,
     MaterialPageRoute(
-        builder: (context) => CategoryProductComponent(
+        builder: (context) => CategoryProductsPage(
               categoryId: categoryId,
               categoryName: categoryName,
             )),

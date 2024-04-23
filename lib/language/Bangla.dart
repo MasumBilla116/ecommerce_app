@@ -1,7 +1,14 @@
 Map<String, String> lang = {
+  'home': 'হোম',
+  'category': 'প্রকার',
+  'cart': 'কার্ট',
+  'profile': 'প্রোফাইল',
   'add_to_card': 'কার্ডে যোগ করুন',
   'view_cart': 'কার্ট দেখুন',
   'checkout': 'চেকআউট',
+  'feature_product': "বৈশিষ্ট্য পণ্য",
+  'brand_product': "ব্র্যান্ড পণ্য",
+  'all_products': "সকল পণ্য",
   'product_details': 'পণ্যের বিবরণ',
   'quantity': 'পরিমাণ',
   'price': 'মূল্য',
@@ -40,6 +47,8 @@ Map<String, String> lang = {
   'remember_me': 'আমাকে মনে রাখুন',
   'login_with_google': 'Google দিয়ে লগইন করুন',
   'login_with_facebook': 'Facebook দিয়ে লগইন করুন',
+  'show_more': 'আরও দেখুন',
+  'load_more': 'আরও লোড করুন',
 };
 
 String getBanglaLang(String key) {

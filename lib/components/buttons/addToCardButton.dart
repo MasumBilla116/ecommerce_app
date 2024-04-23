@@ -108,7 +108,8 @@ class _AddToCardButtonState extends State<AddToCardButton> {
         ],
       ),
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(greenColor),
+        backgroundColor:
+            MaterialStateProperty.all(Color.fromARGB(255, 0, 158, 119)),
       ),
     );
   }
