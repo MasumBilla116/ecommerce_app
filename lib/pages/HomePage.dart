@@ -15,12 +15,12 @@ import 'package:ecommerce/utils/string.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomeComponent extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  State<HomeComponent> createState() => _HomeComponentState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeComponentState extends State<HomeComponent> {
+class _HomePageState extends State<HomePage> {
   List<Widget> topSlideItems = const [
     Image(image: AssetImage("assets/images/carousel/add-1.jpg")),
     Image(image: AssetImage("assets/images/carousel/add-2.jpg")),

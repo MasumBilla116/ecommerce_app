@@ -1,7 +1,8 @@
 import 'package:ecommerce/components/category/categoryProductComponent.dart';
 import 'package:ecommerce/components/product/porductDetails.dart';
-import 'package:ecommerce/pages/CategoruProductsPage.dart';
+import 'package:ecommerce/pages/CategoryProductsPage.dart';
 import 'package:ecommerce/pages/Home.dart';
+import 'package:ecommerce/pages/ProductDetailsPage.dart';
 import 'package:ecommerce/pages/auth/Login.dart';
 import 'package:ecommerce/pages/auth/Register.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ goToProductDetailPage(BuildContext context, productId, productTitle) {
   Navigator.push(
     context,
     MaterialPageRoute(
-        builder: (context) => ProductDetails(
+        builder: (context) => ProductDetailsPage(
               productId: productId,
               productTitle: productTitle,
             )),

@@ -1,11 +1,13 @@
 import 'package:ecommerce/components/cart/cartComponent.dart';
-import 'package:ecommerce/components/home/homeComponent.dart';
+import 'package:ecommerce/components/home/OldhomeComponent.dart';
 import 'package:ecommerce/components/navigation/bottomNavigation.dart';
 import 'package:ecommerce/components/navigation/bottomNavigationController.dart';
 import 'package:ecommerce/components/profile/profileComponent.dart';
 import 'package:ecommerce/controllers/homeController.dart';
+import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/pages/CartPage.dart';
 import 'package:ecommerce/pages/CategoryPage.dart';
+import 'package:ecommerce/pages/HomePage.dart';
 import 'package:ecommerce/pages/ProfilePage.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
@@ -21,22 +23,26 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final _languageBox = Hive.box("languageBox");
 // init langage
-  String systemLanguage = '';
+  String systemLanguage = 'english';
+  String languageShortName = "EN";
   // init home controller
   var controller = HomeController();
   var btmNavigationController = BottomNavigationController();
   @override
   void initState() {
     super.initState();
-    final default_lang = _languageBox.get("lang");
-    if (default_lang != null) {
-      systemLanguage = default_lang;
+    final custom_lang = _languageBox.get("lang");
+    if (custom_lang != null) {
+      if (custom_lang == 'bangla') {
+        systemLanguage = custom_lang;
+        languageShortName = "BN";
+      }
     }
   }
 
   //
   var navigationTabItems = [
-    HomeComponent(),
+    HomePage(),
     CategoryPage(
       btmNavigationController: BottomNavigationController(),
     ),
@@ -57,7 +63,7 @@ class _HomeState extends State<Home> {
   Widget _changeLanguage(BuildContext context) {
     return StatefulBuilder(
       builder: (context, setState) => AlertDialog(
-        title: const Text("Change Language"),
+        title: Text(Language.load("change_language")),
         insetPadding: const EdgeInsets.all(12),
         contentPadding: const EdgeInsets.all(12),
         titleTextStyle: const TextStyle(
@@ -71,7 +77,7 @@ class _HomeState extends State<Home> {
             RadioListTile(
               value: "english",
               groupValue: systemLanguage,
-              title: const Text("English"),
+              title: Text(Language.load("english")),
               onChanged: (String? value) {
                 setState(() {
                   systemLanguage = value as String;
@@ -81,7 +87,7 @@ class _HomeState extends State<Home> {
             RadioListTile(
                 value: "bangla",
                 groupValue: systemLanguage,
-                title: const Text("Bangla"),
+                title: Text(Language.load("bangla")),
                 onChanged: (String? value) {
                   setState(() {
                     systemLanguage = value as String;
@@ -96,9 +102,9 @@ class _HomeState extends State<Home> {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text(
-              "Cancel",
-              style: TextStyle(color: whiteColor),
+            child: Text(
+              Language.load("cancel"),
+              style: const TextStyle(color: whiteColor),
             ),
           ),
           TextButton(
@@ -112,9 +118,9 @@ class _HomeState extends State<Home> {
                 (Route<dynamic> route) => false,
               );
             },
-            child: const Text(
-              "Change",
-              style: TextStyle(color: whiteColor),
+            child: Text(
+              Language.load("change"),
+              style: const TextStyle(color: whiteColor),
             ),
           ),
         ],
@@ -144,12 +150,17 @@ class _HomeState extends State<Home> {
             icon: shoppingCartIcon,
             color: whiteColor,
           ),
-          IconButton(
+          TextButton(
             onPressed: () {
               changeLanguage(context);
             },
-            icon: const Icon(Icons.language),
-            color: whiteColor,
+            child: Text(
+              languageShortName,
+              style: const TextStyle(
+                  color: whiteColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal),
+            ),
           ),
         ],
       ),

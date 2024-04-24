@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const splashTime = 2;
+const splashTime = 1;
 
 // ----- Font Size ----
 // Input

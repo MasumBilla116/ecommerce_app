@@ -1,4 +1,5 @@
 import 'package:ecommerce/utils/colors.dart';
+import 'package:ecommerce/utils/icons.dart';
 import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ PreferredSizeWidget? appBarWithLeading(String title, BuildContext context) {
         color: whiteColor, fontSize: 20, fontWeight: FontWeight.bold),
     leading: IconButton(
       icon: const Icon(
-        Icons.arrow_back_ios_outlined,
+        onlyArrowTurnUpLeftIcon,
         color: whiteColor,
       ),
       onPressed: () => back(context),

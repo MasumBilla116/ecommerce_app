@@ -24,7 +24,7 @@ class _AddToCardButtonState extends State<AddToCardButton> {
   Widget _buildAddCardDialog(BuildContext context) {
     return StatefulBuilder(
       builder: (context, setState) => AlertDialog(
-        title: const Text("Add to cart product"),
+        title: Text(Language.load("add_to_cart")),
         contentPadding: const EdgeInsets.all(12),
         insetPadding: const EdgeInsets.all(12),
         titleTextStyle: const TextStyle(
@@ -41,7 +41,7 @@ class _AddToCardButtonState extends State<AddToCardButton> {
                   selectedCardOption = value as int;
                 });
               },
-              title: const Text("Add to piece"),
+              title: Text(Language.load("add_to_piece")),
             ),
             RadioListTile(
               value: 2,
@@ -51,7 +51,7 @@ class _AddToCardButtonState extends State<AddToCardButton> {
                   selectedCardOption = value as int;
                 });
               },
-              title: const Text("Add to bundle"),
+              title: Text(Language.load("add_to_boundel")),
             ),
           ],
         ),
@@ -62,8 +62,8 @@ class _AddToCardButtonState extends State<AddToCardButton> {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text(
-              "Cancel",
+            child: Text(
+              Language.load("cancel"),
               style: TextStyle(color: whiteColor),
             ),
           ),
@@ -73,8 +73,8 @@ class _AddToCardButtonState extends State<AddToCardButton> {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text(
-              "Add",
+            child: Text(
+              Language.load("add"),
               style: TextStyle(color: whiteColor),
             ),
           ),
@@ -101,7 +101,7 @@ class _AddToCardButtonState extends State<AddToCardButton> {
             width: 20,
           ),
           Text(
-            Language.load("add_to_card"),
+            Language.load("add_to_cart"),
             style: TextStyle(
                 color: whiteColor, fontWeight: FontWeight.bold, fontSize: 16),
           ),
