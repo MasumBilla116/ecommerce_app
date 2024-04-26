@@ -1,7 +1,5 @@
 import 'package:ecommerce/components/background/BgTopImage.dart';
 import 'package:ecommerce/components/buttons/addToCardButton.dart';
-import 'package:ecommerce/components/buttons/iconButtonComponent.dart';
-import 'package:ecommerce/components/carousel/carouselComponent.dart';
 import 'package:ecommerce/components/carousel/carouselIndicatorComponent.dart';
 import 'package:ecommerce/components/circle/colorsCircle.dart';
 import 'package:ecommerce/components/circle/textCircle.dart';
@@ -238,7 +236,6 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                             ),
                           ),
                         ),
-
                         topBottomContentSpace,
                         Container(
                           width: MediaQuery.of(context).size.width,
@@ -279,7 +276,6 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                             ),
                           ),
                         ),
-
                         topBottomContentSpace,
                         Container(
                           width: MediaQuery.of(context).size.width,
@@ -299,22 +295,6 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                             ],
                           ),
                         ),
-                        // topBottomContentSpace,
-                        // product price
-                        // topBottomContentSpace,
-                        // Container(
-                        //   color: const Color.fromARGB(33, 158, 158, 158),
-                        //   width: MediaQuery.of(context).size.width,
-                        //   padding: const EdgeInsets.all(5),
-                        //   child: const Text(
-                        //     "Price",
-                        //     style: TextStyle(
-                        //       fontSize: 15,
-                        //       fontWeight: FontWeight.bold,
-                        //       color: darkColor,
-                        //     ),
-                        //   ),
-                        // ),
                         // add to card button
                         topBottomContentSpace,
                         topBottomContentSpace,
@@ -324,7 +304,6 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                         topBottomContentSpace,
                         Container(
                           width: MediaQuery.of(context).size.width,
-                          // padding: const EdgeInsets.all(5),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,

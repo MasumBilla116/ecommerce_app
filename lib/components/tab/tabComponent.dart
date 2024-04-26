@@ -37,7 +37,7 @@ class _TabComponent extends State<TabComponent> {
           decoration: BoxDecoration(
             color: Color.fromARGB(29, 0, 255, 8),
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: Color.fromARGB(192, 0, 253, 8), width: 1),
+            border: Border.all(color: baseColor, width: 1),
           ),
           child: Row(
             children: [
@@ -53,7 +53,7 @@ class _TabComponent extends State<TabComponent> {
                   ),
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                          activeTab == 0 ? greenColor : transparentColor),
+                          activeTab == 0 ? baseColor : transparentColor),
                       elevation: MaterialStateProperty.all(0)),
                 ),
               ),
@@ -69,7 +69,7 @@ class _TabComponent extends State<TabComponent> {
                   ),
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                          activeTab == 1 ? greenColor : transparentColor),
+                          activeTab == 1 ? baseColor : transparentColor),
                       elevation: MaterialStateProperty.all(0)),
                 ),
               ),

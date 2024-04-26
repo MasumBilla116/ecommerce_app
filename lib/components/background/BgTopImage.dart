@@ -1,4 +1,5 @@
-import 'package:ecommerce/utils/images.dart';
+import 'package:ecommerce/utils/colors.dart';
+// import 'package:ecommerce/utils/images.dart';
 import 'package:flutter/material.dart';
 
 Widget bgTopImage({Widget? child}) {
@@ -8,7 +9,7 @@ Widget bgTopImage({Widget? child}) {
       //   image: AssetImage(topBgImagePath),
       //   fit: BoxFit.fill,
       // ),
-      color: Color.fromARGB(255, 236, 236, 236),
+      color: whiteColor,
     ),
     child: child,
   );

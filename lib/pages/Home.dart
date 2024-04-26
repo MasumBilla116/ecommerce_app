@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
     }
   }
 
-  //
+  // navigation bottom page items
   var navigationTabItems = [
     HomePage(),
     CategoryPage(
@@ -133,37 +133,39 @@ class _HomeState extends State<Home> {
     return Scaffold(
       bottomNavigationBar: bottomNavigation(btmNavigationController, setState),
       body: navigationTabItems[btmNavigationController.navigationIndex],
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu),
-          color: whiteColor,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: searchIcon,
-            color: whiteColor,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: shoppingCartIcon,
-            color: whiteColor,
-          ),
-          TextButton(
-            onPressed: () {
-              changeLanguage(context);
-            },
-            child: Text(
-              languageShortName,
-              style: const TextStyle(
+      appBar: btmNavigationController.navigationIndex != 3
+          ? AppBar(
+              leading: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.menu),
+                color: whiteColor,
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: searchIcon,
                   color: whiteColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.normal),
-            ),
-          ),
-        ],
-      ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: shoppingCartIcon,
+                  color: whiteColor,
+                ),
+                TextButton(
+                  onPressed: () {
+                    changeLanguage(context);
+                  },
+                  child: Text(
+                    languageShortName,
+                    style: const TextStyle(
+                        color: whiteColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal),
+                  ),
+                ),
+              ],
+            )
+          : null,
     );
   }
 }
