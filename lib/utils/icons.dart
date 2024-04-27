@@ -17,6 +17,8 @@ const loveFillIcon = Icon(
   CupertinoIcons.suit_heart_fill,
 );
 const arrowTurnUpLeftIcon = Icon(CupertinoIcons.arrow_turn_up_left);
+const listIcon = Icon(Icons.list);
+const messageIcon = Icon(Icons.message);
 
 // Only Icon Provider
 const onlyHomeIcon = CupertinoIcons.home;
@@ -33,3 +35,5 @@ const onlyLoveIcon = CupertinoIcons.suit_heart;
 const onlyLoveFillIcon = CupertinoIcons.suit_heart_fill;
 const onlyArrowTurnUpLeftIcon = CupertinoIcons.arrow_turn_up_left;
 const onlyVerifiedIcon = Icons.verified;
+const onlyListIcon = Icons.list;
+const onlyMessageIcon = Icons.message;
