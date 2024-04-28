@@ -151,8 +151,8 @@ class _CategoryProductComponent extends State<CategoryProductComponent> {
                         physics: const NeverScrollableScrollPhysics(),
                         children: List.generate(
                             products.length,
-                            (index) => productGridViewComponent(
-                                context, products[index])),
+                            (index) => ProductGridViewComponent(
+                                product: products[index])),
                       ),
                       ElevatedButton(onPressed: () {}, child: Text("Show More"))
                     ],

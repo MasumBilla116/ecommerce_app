@@ -11,6 +11,8 @@ import 'package:ecommerce/utils/images.dart';
 import 'package:ecommerce/utils/string.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerce/utils/demoData.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,6 +20,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  dynamic wishlistProdctIds = [];
+  final _wishlistBox = Hive.box("wishlistBox");
+
+  @override
+  void initState() {
+    super.initState();
+    var wishlistIds = _wishlistBox.get('wishlistProductIds');
+    if (wishlistIds != null) {
+      wishlistProdctIds = wishlistIds;
+    }
+  }
+
   List<Widget> topSlideItems = const [
     Image(image: AssetImage("assets/images/carousel/add-1.jpg")),
     Image(image: AssetImage("assets/images/carousel/add-2.jpg")),
@@ -40,65 +54,6 @@ class _HomePageState extends State<HomePage> {
     ),
     Image(image: AssetImage("assets/images/carousel/add-3.jpeg")),
     Image(image: AssetImage("assets/images/carousel/add-1.jpg")),
-  ];
-
-  final products = [
-    {
-      "image": "assets/images/brands/p1.jpeg",
-      "title": "ASUS Laptop. (Core 8)",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "550",
-      "discount": "10"
-    },
-    {
-      "image": "assets/images/brands/p2.jpeg",
-      "title": "Modern Cosmetics.",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p3.jpeg",
-      "title": "HP Laptop. (Core 5)",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p4.jpeg",
-      "title": "Lotto Ladies Shoes",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p5.jpeg",
-      "title": "Ladies Lather Bag",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p6.jpeg",
-      "title": "Lotto Ladies Sport Shoes",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p7.jpeg",
-      "title": "Ladies Sunglasses",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    }
   ];
 
   @override
@@ -220,9 +175,9 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Row(
                                   children: List.generate(
-                                      products.length,
-                                      (index) =>
-                                          productComponent(products[index])),
+                                      demoProductList.length,
+                                      (index) => productComponent(
+                                          demoProductList[index])),
                                 ),
                               ],
                             ),

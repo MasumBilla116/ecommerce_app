@@ -1,7 +1,5 @@
 import 'package:ecommerce/components/background/BgTopImage.dart';
 import 'package:ecommerce/components/buttons/addToCardButton.dart';
-import 'package:ecommerce/components/buttons/iconButtonComponent.dart';
-import 'package:ecommerce/components/carousel/carouselComponent.dart';
 import 'package:ecommerce/components/carousel/carouselIndicatorComponent.dart';
 import 'package:ecommerce/components/circle/colorsCircle.dart';
 import 'package:ecommerce/components/circle/textCircle.dart';

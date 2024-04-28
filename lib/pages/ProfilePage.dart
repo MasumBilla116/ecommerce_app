@@ -90,6 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 // list
                 Container(
                   margin: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.only(left: 12, right: 12),
                   decoration: BoxDecoration(
                     color: whiteColor,
                     borderRadius: BorderRadius.circular(5),

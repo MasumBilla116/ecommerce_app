@@ -150,8 +150,8 @@ class _CategoryProductsPage extends State<CategoryProductsPage> {
                         physics: const NeverScrollableScrollPhysics(),
                         children: List.generate(
                             products.length,
-                            (index) => productGridViewComponent(
-                                context, products[index])),
+                            (index) => ProductGridViewComponent(
+                                product: products[index])),
                       ),
                       ElevatedButton(
                         onPressed: () {},
