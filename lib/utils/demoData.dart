@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 final demoProductList = [
   {
     "id": 1,
@@ -71,4 +73,16 @@ final demoProductList = [
     "price": "650",
     "discount": "15"
   },
+];
+
+List<Widget> topSlideDemoItems = const [
+  Image(image: AssetImage("assets/images/carousel/add-1.jpg")),
+  Image(image: AssetImage("assets/images/carousel/add-2.jpg")),
+  Image(image: AssetImage("assets/images/carousel/add-3.jpeg")),
+  Image(
+    image: AssetImage("assets/images/carousel/add-5.jpg"),
+  ),
+  Image(
+    image: AssetImage("assets/images/carousel/add-7.jpg"),
+  ),
 ];

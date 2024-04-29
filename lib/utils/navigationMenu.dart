@@ -1,5 +1,4 @@
 import 'package:ecommerce/components/category/categoryProductComponent.dart';
-import 'package:ecommerce/components/product/porductDetails.dart';
 import 'package:ecommerce/pages/CategoryProductsPage.dart';
 import 'package:ecommerce/pages/Home.dart';
 import 'package:ecommerce/pages/ProductDetailsPage.dart';

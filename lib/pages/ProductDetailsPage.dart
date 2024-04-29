@@ -1,12 +1,15 @@
 import 'package:ecommerce/components/background/BgTopImage.dart';
 import 'package:ecommerce/components/buttons/addToCardButton.dart';
+import 'package:ecommerce/components/buttons/orderNowBtn.dart';
 import 'package:ecommerce/components/carousel/carouselIndicatorComponent.dart';
 import 'package:ecommerce/components/circle/colorsCircle.dart';
 import 'package:ecommerce/components/circle/textCircle.dart';
+import 'package:ecommerce/components/iconGrid/likeDislikeCommentIconGrid.dart';
 import 'package:ecommerce/components/tab/tabComponent.dart';
 import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/const.dart';
+import 'package:ecommerce/utils/demoData.dart';
 import 'package:ecommerce/utils/font.dart';
 import 'package:ecommerce/utils/icons.dart';
 import 'package:ecommerce/utils/navigationMenu.dart';
@@ -55,18 +58,6 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
       });
     }
   }
-
-  List<Widget> topSlideItems = const [
-    Image(image: AssetImage("assets/images/carousel/add-1.jpg")),
-    Image(image: AssetImage("assets/images/carousel/add-2.jpg")),
-    Image(image: AssetImage("assets/images/carousel/add-3.jpeg")),
-    Image(
-      image: AssetImage("assets/images/carousel/add-5.jpg"),
-    ),
-    Image(
-      image: AssetImage("assets/images/carousel/add-7.jpg"),
-    ),
-  ];
 
   void bookMarkProduct() {
     setState(() {
@@ -126,7 +117,7 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.all(9),
+          padding: const EdgeInsets.all(9),
           child: SingleChildScrollView(
             child: Container(
               color: Colors.white,
@@ -134,9 +125,24 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
-                    children: [CarouselIndicatorComponent(topSlideItems)],
+                    children: [
+                      CarouselIndicatorComponent(topSlideDemoItems),
+                      Container(
+                        padding: const EdgeInsets.only(left: 12, right: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            likeDislikeCommentGrid(onlyThumbupIcon, 10000),
+                            likeDislikeCommentGrid(onlyThumbdownIcon, 256000),
+                            likeDislikeCommentGrid(onlyReviewIcon, 326540),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  spaceTopBottom,
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     color: const Color.fromARGB(64, 158, 158, 158),
                     padding: const EdgeInsets.all(10),
@@ -207,14 +213,14 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                                     ),
                                     CircleAvatar(
                                       maxRadius: 8,
+                                      backgroundColor:
+                                          Color.fromARGB(68, 244, 67, 54),
                                       child: Icon(
                                         onlyVerifiedIcon,
                                         color: Colors.red,
                                         size: 13,
                                       ),
-                                      backgroundColor:
-                                          Color.fromARGB(68, 244, 67, 54),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ],
@@ -295,10 +301,22 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                             ],
                           ),
                         ),
-                        // add to card button
+                        // add to card and order button
                         topBottomContentSpace,
                         topBottomContentSpace,
-                        AddToCardButton(),
+                        const Row(
+                          children: [
+                            Expanded(
+                              child: AddToCardButton(),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: OrderNowButton(),
+                            ),
+                          ],
+                        ),
                         // tap component
                         topBottomContentSpace,
                         topBottomContentSpace,

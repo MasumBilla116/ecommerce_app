@@ -1,15 +1,19 @@
 import "package:ecommerce/language/Language.dart";
 import "package:ecommerce/utils/colors.dart";
-import "package:ecommerce/utils/navigationMenu.dart";
+import "package:ecommerce/utils/icons.dart";
+import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 
 class AddToCardButton extends StatefulWidget {
+  const AddToCardButton({Key? key}) : super(key: key);
+  @override
   State<AddToCardButton> createState() => _AddToCardButtonState();
 }
 
 class _AddToCardButtonState extends State<AddToCardButton> {
   int selectedCardOption = 1;
 
+  @override
   void initState() {
     super.initState();
   }
@@ -64,7 +68,7 @@ class _AddToCardButtonState extends State<AddToCardButton> {
             },
             child: Text(
               Language.load("cancel"),
-              style: TextStyle(color: whiteColor),
+              style: const TextStyle(color: whiteColor),
             ),
           ),
           TextButton(
@@ -75,7 +79,7 @@ class _AddToCardButtonState extends State<AddToCardButton> {
             },
             child: Text(
               Language.load("add"),
-              style: TextStyle(color: whiteColor),
+              style: const TextStyle(color: whiteColor),
             ),
           ),
         ],
@@ -89,27 +93,34 @@ class _AddToCardButtonState extends State<AddToCardButton> {
       onPressed: () {
         _showAddCardDialog(context);
       },
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          baseColor,
+        ),
+        padding: MaterialStateProperty.all(
+          const EdgeInsets.only(left: 5, right: 5),
+        ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            Icons.shopping_cart_outlined,
-            color: whiteColor,
+          const Icon(
+            onlyShoppingCartPlusIcon,
+            color: orangeColor,
           ),
-          SizedBox(
-            width: 20,
+          const SizedBox(
+            width: 5,
           ),
           Text(
             Language.load("add_to_cart"),
-            style: TextStyle(
-                color: whiteColor, fontWeight: FontWeight.bold, fontSize: 16),
+            style: const TextStyle(
+              color: whiteColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
         ],
-      ),
-      style: ButtonStyle(
-        backgroundColor:
-            MaterialStateProperty.all(Color.fromARGB(255, 0, 158, 119)),
       ),
     );
   }
