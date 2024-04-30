@@ -1,11 +1,14 @@
 import "package:ecommerce/language/Language.dart";
+import "package:ecommerce/method/addTocart.dart";
 import "package:ecommerce/utils/colors.dart";
 import "package:ecommerce/utils/icons.dart";
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 
 class AddToCardButton extends StatefulWidget {
-  const AddToCardButton({Key? key}) : super(key: key);
+  final dynamic cartProduct;
+  const AddToCardButton({required this.cartProduct, Key? key})
+      : super(key: key);
   @override
   State<AddToCardButton> createState() => _AddToCardButtonState();
 }
@@ -16,6 +19,8 @@ class _AddToCardButtonState extends State<AddToCardButton> {
   @override
   void initState() {
     super.initState();
+    print("cartProduct: ");
+    print(widget.cartProduct);
   }
 
   void _showAddCardDialog(BuildContext context) {
@@ -91,7 +96,15 @@ class _AddToCardButtonState extends State<AddToCardButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        _showAddCardDialog(context);
+        /**
+       * Note: Don't remove _showAddCardDialog method 
+       * this method for buyer
+      */
+        // _showAddCardDialog(context);
+        // print("hello man");
+        setState(() {
+          cartMethod(widget.cartProduct);
+        });
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(

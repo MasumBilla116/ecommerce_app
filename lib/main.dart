@@ -7,6 +7,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.openBox("languageBox");
   Hive.openBox("wishlistBox");
+  Hive.openBox("cartBox");
   runApp(const MyApp());
 }
 

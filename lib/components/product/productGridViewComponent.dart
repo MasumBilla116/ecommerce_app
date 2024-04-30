@@ -1,4 +1,4 @@
-import 'package:ecommerce/method/wishlist.dart';
+import 'package:ecommerce/method/addToWishlist.dart';
 import 'package:ecommerce/utils/app.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';

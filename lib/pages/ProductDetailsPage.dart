@@ -32,6 +32,12 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
   var isShare = false;
   var cardProduct = 1;
 
+  var product = {
+    "id": 1,
+    "title": 'Cart product title',
+    "price": 555,
+  };
+
   var tabButtons = [
     {
       "title": "1 PIECES PRICE",
@@ -304,15 +310,15 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                         // add to card and order button
                         topBottomContentSpace,
                         topBottomContentSpace,
-                        const Row(
+                        Row(
                           children: [
                             Expanded(
-                              child: AddToCardButton(),
+                              child: AddToCardButton(cartProduct: product),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
-                            Expanded(
+                            const Expanded(
                               child: OrderNowButton(),
                             ),
                           ],

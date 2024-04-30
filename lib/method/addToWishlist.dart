@@ -4,10 +4,17 @@ void wishlist(product) {
   final wishlistBox = Hive.box('wishlistBox');
   dynamic wishlistProducts = wishlistBox.get('wishlistProducts');
   dynamic wishlistProductIds = wishlistBox.get('wishlistProductIds');
+  // print(product);
+  // print(wishlistProducts);
+  // print(wishlistProductIds);
 
-  if (wishlistProducts == null || wishlistProductIds == null) {
+  if (wishlistProducts.isEmpty || wishlistProductIds.isEmpty) {
     wishlistProducts = [];
     wishlistProductIds = [];
+    wishlistProducts.add(product);
+    wishlistProductIds.add(product['id']);
+    wishlistBox.put('wishlistProducts', wishlistProducts);
+    wishlistBox.put('wishlistProductIds', wishlistProductIds);
   } else {
     if (wishlistProductIds.contains(product['id'])) {
       wishlistProductIds.remove(product['id']);
