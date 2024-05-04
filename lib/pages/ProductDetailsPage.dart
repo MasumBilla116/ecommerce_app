@@ -1,5 +1,6 @@
 import 'package:ecommerce/components/background/BgTopImage.dart';
 import 'package:ecommerce/components/buttons/addToCardButton.dart';
+import 'package:ecommerce/components/buttons/addToCartAppBarBtn.dart';
 import 'package:ecommerce/components/buttons/orderNowBtn.dart';
 import 'package:ecommerce/components/carousel/carouselIndicatorComponent.dart';
 import 'package:ecommerce/components/circle/colorsCircle.dart';
@@ -17,6 +18,7 @@ import 'package:ecommerce/utils/string.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   int productId;
@@ -28,14 +30,33 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPage extends State<ProductDetailsPage> {
+  // hive
+  final cartBox = Hive.box("cartBox");
+
+// variables
   var bookMark = false;
   var isShare = false;
   var cardProduct = 1;
+  var totalCartItems = 0;
+  var cartProductIds = [];
 
+  // init state
+  @override
+  void initState() {
+    final cartItems = cartBox.get("cartIds");
+    super.initState();
+    // update carts items
+    setState(() {
+      totalCartItems = cartItems != null ? cartItems.length : 0;
+      cartProductIds = cartItems != null ? cartItems : [];
+    });
+  }
+
+// json for demo data
   var product = {
-    "id": 1,
-    "title": 'Cart product title',
-    "price": 555,
+    "id": 4,
+    "title": 'Cart product title 4',
+    "price": 4,
   };
 
   var tabButtons = [
@@ -47,8 +68,12 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
     }
   ];
 
-  void initState() {
-    super.initState();
+  // handler
+  void updateCartItems() {
+    final cartItems = cartBox.get("cartIds");
+    setState(() {
+      totalCartItems = cartItems != null ? cartItems.length : 0;
+    });
   }
 
   void increment() {
@@ -81,8 +106,11 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
   Widget build(BuildContext context) {
     return bgTopImage(
       child: Scaffold(
+        // app bar
         appBar: AppBar(
           actions: [
+            // add to cart app bar btn
+            addToCartAppBarBtn(totalCartItems),
             IconButton(
               onPressed: () {
                 shareProduct();
@@ -122,6 +150,7 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
             ),
           ),
         ),
+        // scaffold body
         body: Padding(
           padding: const EdgeInsets.all(9),
           child: SingleChildScrollView(
@@ -313,7 +342,12 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                         Row(
                           children: [
                             Expanded(
-                              child: AddToCardButton(cartProduct: product),
+                              child: AddToCardButton(
+                                cartProduct: product,
+                                updateCartItems: updateCartItems,
+                                isExistInCartProduct:
+                                    cartProductIds.contains(product['id']),
+                              ),
                             ),
                             const SizedBox(
                               width: 10,

@@ -1,28 +1,46 @@
+import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-void cartMethod(dynamic product) {
+void addToCart(product) {
   // Retrieve the Hive box
-  var cartBox = Hive.box("cartBox");
+  final cartBox = Hive.box("cartBox");
+  dynamic cartIds = cartBox.get("cartIds");
+  dynamic cartProducts = cartBox.get("cartProducts");
 
-  List<dynamic> cartIds = cartBox.get("cartIds");
-  dynamic cartProduct = cartBox.get("cartProduct");
-
-  if (cartIds.isEmpty || cartProduct.isEmpty) {
+  if (cartProducts == null || cartIds == null) {
     cartIds = [product['id']];
-    cartProduct = [product];
+    cartProducts = [product];
   } else {
-    if (cartIds.contains(product['id'])) {
-      cartIds.remove(product['id']);
-      cartProduct.removeWhere((item) => item['id'] == product['id']);
-    } else {
+    if (!cartIds.contains(product['id'])) {
       cartIds.add(product['id']);
-      cartProduct.add(product);
+      cartProducts.add(product);
     }
   }
 
   cartBox.put("cartIds", cartIds);
-  cartBox.put("cartProduct", cartProduct);
+  cartBox.put("cartProducts", cartProducts);
 
-  // print("Updated cartIds: ${cartBox.get("cartIds")}");
-  // print("Updated cartProduct: ${cartBox.get("cartProduct")}");
+  // Update app bar cart
+
+  print("Updated cartIds: ${cartBox.get("cartIds")}");
+  print("Updated cartProduct: ${cartBox.get("cartProducts")}");
+}
+
+void deleteCartProduct(productId) {
+  final cartBox = Hive.box("cartBox");
+  List<dynamic> cartIds = cartBox.get("cartIds");
+  dynamic cartProducts = cartBox.get("cartProducts");
+  if (cartIds.contains(productId)) {
+    cartIds.remove(productId);
+    cartProducts.removeWhere((pro) => pro['id'] == productId);
+  }
+
+  cartBox.put("cartIds", cartIds);
+  cartBox.put("cartProducts", cartProducts);
+}
+
+void clearCartProduct() {
+  final cartBox = Hive.box("cartBox");
+  cartBox.delete("cartIds");
+  cartBox.delete("cartProducts");
 }

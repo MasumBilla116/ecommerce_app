@@ -1,3 +1,4 @@
+import 'package:ecommerce/components/buttons/addToCartAppBarBtn.dart';
 import 'package:ecommerce/components/cart/cartComponent.dart';
 import 'package:ecommerce/components/home/OldhomeComponent.dart';
 import 'package:ecommerce/components/navigation/bottomNavigation.dart';
@@ -15,29 +16,51 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:hive_flutter/hive_flutter.dart";
 
+final GlobalKey<_HomeState> homeKey = GlobalKey<_HomeState>();
+
 class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
+  Home({Key? key}) : super(key: key);
 }
 
 class _HomeState extends State<Home> {
+  // hive box
   final _languageBox = Hive.box("languageBox");
-// init langage
+  final cartBox = Hive.box("cartBox");
+
+  // init langage
   String systemLanguage = 'english';
   String languageShortName = "EN";
+
   // init home controller
   var controller = HomeController();
   var btmNavigationController = BottomNavigationController();
+
+  // globar variable
+  var totalCartItems = 0;
+
+  // init state
   @override
   void initState() {
     super.initState();
-    final custom_lang = _languageBox.get("lang");
-    if (custom_lang != null) {
-      if (custom_lang == 'bangla') {
-        systemLanguage = custom_lang;
+    // hive box
+    final customLang = _languageBox.get("lang");
+    final cartItems = cartBox.get("cartIds");
+
+    // for language
+    if (customLang != null) {
+      if (customLang == 'bangla') {
+        systemLanguage = customLang;
         languageShortName = "BN";
       }
     }
+    // update cart items
+    // totalCartItems = cartItems != null ? cartItems.length : 0;
+    updateCartItems();
+    cartBox.watch().listen((event) {
+      updateCartItems();
+    });
   }
 
   // navigation bottom page items
@@ -50,12 +73,22 @@ class _HomeState extends State<Home> {
     ProfilePage(),
   ];
 
+  // handler method
+  //-----------------------
+  // cart
+  void updateCartItems() {
+    final cartItems = cartBox.get("cartIds");
+    setState(() {
+      totalCartItems = cartItems != null ? cartItems.length : 0;
+    });
+  }
+
+  // language
   void changeLanguage(BuildContext context) {
     showDialog(
         context: context, builder: (context) => _changeLanguage(context));
   }
 
-  // set language
   void setSystemLanguage() {
     _languageBox.put("lang", systemLanguage);
   }
@@ -146,11 +179,7 @@ class _HomeState extends State<Home> {
                   icon: searchIcon,
                   color: whiteColor,
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: shoppingCartIcon,
-                  color: whiteColor,
-                ),
+                addToCartAppBarBtn(totalCartItems),
                 TextButton(
                   onPressed: () {
                     changeLanguage(context);

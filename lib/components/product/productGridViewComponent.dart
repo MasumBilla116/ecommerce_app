@@ -104,7 +104,7 @@ class _ProductGridViewComponentState extends State<ProductGridViewComponent> {
           ),
           IconButton(
             icon: loveIcon,
-            color: Color.fromARGB(131, 255, 123, 0),
+            color: const Color.fromARGB(131, 255, 123, 0),
             selectedIcon: loveFillIcon,
             isSelected: wishlistProductIds.contains(widget.product['id']),
             onPressed: () {

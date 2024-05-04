@@ -7,7 +7,13 @@ import "package:flutter/material.dart";
 
 class AddToCardButton extends StatefulWidget {
   final dynamic cartProduct;
-  const AddToCardButton({required this.cartProduct, Key? key})
+  final Function? updateCartItems;
+  final bool? isExistInCartProduct;
+  const AddToCardButton(
+      {required this.cartProduct,
+      this.updateCartItems,
+      this.isExistInCartProduct = false,
+      Key? key})
       : super(key: key);
   @override
   State<AddToCardButton> createState() => _AddToCardButtonState();
@@ -19,8 +25,6 @@ class _AddToCardButtonState extends State<AddToCardButton> {
   @override
   void initState() {
     super.initState();
-    print("cartProduct: ");
-    print(widget.cartProduct);
   }
 
   void _showAddCardDialog(BuildContext context) {
@@ -100,10 +104,13 @@ class _AddToCardButtonState extends State<AddToCardButton> {
        * Note: Don't remove _showAddCardDialog method 
        * this method for buyer
       */
-        // _showAddCardDialog(context);
-        // print("hello man");
+        // _showAddCardDialog(context);  // dont remove
+
         setState(() {
-          cartMethod(widget.cartProduct);
+          addToCart(widget.cartProduct);
+          if (widget.updateCartItems != null) {
+            widget.updateCartItems!();
+          }
         });
       },
       style: ButtonStyle(
@@ -118,10 +125,15 @@ class _AddToCardButtonState extends State<AddToCardButton> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Icon(
-            onlyShoppingCartPlusIcon,
-            color: orangeColor,
-          ),
+          widget.isExistInCartProduct == true
+              ? const Icon(
+                  onlyShoppingCartPlusIcon,
+                  color: orangeColor,
+                )
+              : const Icon(
+                  onlyShoppingCartIcon,
+                  color: orangeColor,
+                ),
           const SizedBox(
             width: 5,
           ),
