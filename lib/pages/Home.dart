@@ -179,7 +179,7 @@ class _HomeState extends State<Home> {
                   icon: searchIcon,
                   color: whiteColor,
                 ),
-                addToCartAppBarBtn(totalCartItems),
+                addToCartAppBarBtn(context, totalCartItems),
                 TextButton(
                   onPressed: () {
                     changeLanguage(context);

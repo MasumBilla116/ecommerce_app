@@ -1,12 +1,15 @@
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
+import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:flutter/material.dart';
 
-Widget addToCartAppBarBtn(cartItem) {
+Widget addToCartAppBarBtn(context, cartItem) {
   return Stack(
     children: [
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          goToAddToCartProductPage(context);
+        },
         icon: shoppingCartIcon,
         color: whiteColor,
       ),

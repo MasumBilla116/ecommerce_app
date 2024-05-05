@@ -24,6 +24,7 @@ const giftIcon = Icon(CupertinoIcons.gift);
 const thumbupIcon = Icon(CupertinoIcons.hand_thumbsup);
 const thumbdownIcon = Icon(CupertinoIcons.hand_thumbsdown);
 const reviewIcon = Icon(CupertinoIcons.chat_bubble_text);
+const deleteIcon = Icon(CupertinoIcons.delete);
 
 // Only Icon Provider
 const onlyHomeIcon = CupertinoIcons.home;
@@ -47,3 +48,4 @@ const onlyGiftIcon = CupertinoIcons.gift;
 const onlyThumbupIcon = CupertinoIcons.hand_thumbsup;
 const onlyThumbdownIcon = CupertinoIcons.hand_thumbsdown;
 const onlyReviewIcon = CupertinoIcons.chat_bubble_text;
+const onlyDeleteIcon = CupertinoIcons.delete;

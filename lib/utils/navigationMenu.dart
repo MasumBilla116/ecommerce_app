@@ -1,4 +1,5 @@
 import 'package:ecommerce/components/category/categoryProductComponent.dart';
+import 'package:ecommerce/pages/CartPage.dart';
 import 'package:ecommerce/pages/CategoryProductsPage.dart';
 import 'package:ecommerce/pages/Home.dart';
 import 'package:ecommerce/pages/ProductDetailsPage.dart';
@@ -51,4 +52,8 @@ goToProductDetailPage(BuildContext context, productId, productTitle) {
               productTitle: productTitle,
             )),
   );
+}
+
+goToAddToCartProductPage(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
 }

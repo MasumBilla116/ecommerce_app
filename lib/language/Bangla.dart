@@ -72,6 +72,7 @@ Map<String, String> lang = {
   'my_wishlist': "আমার ইচ্ছে তালিকা",
   'message': "বার্তা",
   'buy_now': "ক্রয় করুন",
+  "cart_product": 'কার্টের পণ্য',
 };
 
 String getBanglaLang(String key) {
