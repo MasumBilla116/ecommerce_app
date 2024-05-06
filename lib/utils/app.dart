@@ -4,13 +4,13 @@ import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:flutter/material.dart';
 
 // app
-const appName = "Shopping Mart";
+const appName = "Bonu Shop";
 const currency = "Tk";
 
 // login title
 Widget loginTitle({Color? textColor = Colors.white, double? fontSize = 15}) {
   return Text(
-    "Sign in to shopping mart",
+    "Sign in to Bonu Shop",
     style: TextStyle(
         fontWeight: FontWeight.bold, color: textColor, fontSize: fontSize),
   );
@@ -18,7 +18,7 @@ Widget loginTitle({Color? textColor = Colors.white, double? fontSize = 15}) {
 
 Widget registerTitle({Color? textColor = Colors.white, double? fontSize = 15}) {
   return Text(
-    "Sign up in shopping mart",
+    "Sign up in Bonu Shop",
     style: TextStyle(
         fontWeight: FontWeight.bold, color: textColor, fontSize: fontSize),
   );

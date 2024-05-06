@@ -110,7 +110,7 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
         appBar: AppBar(
           actions: [
             // add to cart app bar btn
-            addToCartAppBarBtn(totalCartItems),
+            addToCartAppBarBtn(context, totalCartItems),
             IconButton(
               onPressed: () {
                 shareProduct();

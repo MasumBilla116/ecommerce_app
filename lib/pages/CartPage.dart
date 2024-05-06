@@ -1,4 +1,6 @@
+import 'package:ecommerce/components/badge/roundedBadge.dart';
 import 'package:ecommerce/language/Language.dart';
+import 'package:ecommerce/method/addTocart.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,72 +36,109 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          Language.load("cart_product"),
-          style: const TextStyle(color: whiteColor),
+        actions: [
+          TextButton.icon(
+            onPressed: () {},
+            style: const ButtonStyle(
+              backgroundColor: MaterialStatePropertyAll(orangeColor),
+              elevation: MaterialStatePropertyAll(10),
+              shadowColor: MaterialStatePropertyAll(blueColor),
+            ),
+            icon: const Icon(
+              CupertinoIcons.hand_point_right,
+              color: whiteColor,
+            ),
+            label: Text(
+              Language.load("buy_now"),
+              style: const TextStyle(color: whiteColor, fontSize: 15),
+            ),
+          ),
+          const SizedBox(
+            width: 15,
+          ),
+        ],
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              Language.load("cart_product"),
+              style: const TextStyle(color: whiteColor),
+            ),
+            Row(
+              children: [
+                roundedBadge(Language.load('items'), 4),
+                const SizedBox(width: 8),
+                roundedBadge(Language.load('price'), 987564),
+              ],
+            ),
+            const SizedBox(height: 10),
+          ],
         ),
       ),
-      body: ListView.builder(
-        itemCount: cartProducts.length,
-        itemBuilder: (context, index) {
-          final product = cartProducts[index];
-          return Column(
-            children: [
-              ListTile(
-                title: Text(
-                  product['title'].length > 20
-                      ? '${product['title'].substring(0, 20)}...'
-                      : product['title'],
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                subtitle: Text('Price: \$${product['price']}'),
-                leading: const CircleAvatar(),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
+      body: cartProducts.isNotEmpty
+          ? ListView.builder(
+              itemCount: cartProducts.length,
+              itemBuilder: (context, index) {
+                final product = cartProducts[index];
+                return Column(
                   children: [
-                    incrementDecrementCartItem(Icons.add, 'increment'),
-                    Container(
-                      width: 30,
-                      height: 22,
-                      color: const Color.fromARGB(55, 64, 91, 247),
-                      child: const Center(
-                        child: Text(
-                          '${1}',
-                          style: TextStyle(fontSize: 15),
-                        ),
+                    ListTile(
+                      title: Text(
+                        product['title'].length > 20
+                            ? '${product['title'].substring(0, 20)}...'
+                            : product['title'],
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                      subtitle: Text('Price: \$${product['price']}'),
+                      leading: const CircleAvatar(),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          incrementDecrementCartItem(Icons.add, 'increment'),
+                          Container(
+                            width: 30,
+                            height: 22,
+                            color: const Color.fromARGB(55, 64, 91, 247),
+                            child: const Center(
+                              child: Text(
+                                '${1}',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                          incrementDecrementCartItem(Icons.remove, 'decrement'),
+                          IconButton(
+                            style: ButtonStyle(
+                              overlayColor: MaterialStateProperty.all(
+                                const Color.fromARGB(19, 247, 64, 64),
+                              ),
+                              iconSize: MaterialStateProperty.all(20),
+                              padding: MaterialStateProperty.all(
+                                const EdgeInsets.symmetric(
+                                    horizontal: 5, vertical: 5),
+                              ),
+                            ),
+                            icon: const Icon(
+                              onlyDeleteIcon,
+                              color: redColor,
+                            ),
+                            onPressed: () {
+                              // print(product['id']);
+                              setState(() {
+                                deleteCartProduct(product['id']);
+                              });
+                            },
+                          ),
+                        ],
                       ),
                     ),
-                    incrementDecrementCartItem(Icons.remove, 'decrement'),
-                    IconButton(
-                      style: ButtonStyle(
-                        // backgroundColor: MaterialStateProperty.all(
-                        //   Color.fromARGB(19, 247, 64, 64),
-                        // ),
-                        overlayColor: MaterialStateProperty.all(
-                          Color.fromARGB(19, 247, 64, 64),
-                        ),
-                        iconSize: MaterialStateProperty.all(20),
-                        padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                        ),
-                      ),
-                      icon: Icon(
-                        onlyDeleteIcon,
-                        color: redColor,
-                      ),
-                      onPressed: () {
-                        // Add your logic here
-                      },
-                    ),
+                    const Divider(),
                   ],
-                ),
-              ),
-              const Divider(),
-            ],
-          );
-        },
-      ),
+                );
+              },
+            )
+          : const Text("Empty Cart"),
     );
   }
 }

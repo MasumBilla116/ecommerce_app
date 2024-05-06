@@ -14,6 +14,7 @@ const Color blueColor = Colors.blue;
 const Color orangeColor = Colors.orange;
 const Color transparentColor = Colors.transparent;
 const Color baseColor = Color.fromARGB(255, 1, 160, 120);
+const Color baseDarkColor = Color.fromARGB(255, 13, 112, 74);
 
 // Background color
 const Color bgColor = Color.fromARGB(255, 158, 1, 93);

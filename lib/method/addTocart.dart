@@ -30,10 +30,14 @@ void deleteCartProduct(productId) {
   final cartBox = Hive.box("cartBox");
   List<dynamic> cartIds = cartBox.get("cartIds");
   dynamic cartProducts = cartBox.get("cartProducts");
+  // print(cartProducts);
+
   if (cartIds.contains(productId)) {
     cartIds.remove(productId);
     cartProducts.removeWhere((pro) => pro['id'] == productId);
   }
+
+  print(cartProducts);
 
   cartBox.put("cartIds", cartIds);
   cartBox.put("cartProducts", cartProducts);
