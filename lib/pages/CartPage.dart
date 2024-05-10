@@ -18,17 +18,45 @@ class _CartPageState extends State<CartPage> {
 
   // variable
   late List cartProducts; // Changed to late
-
+  dynamic cart = {
+    "total_items": 0,
+    "total_price": 0,
+    "products": [],
+  };
   // init state
   @override
   void initState() {
     super.initState();
     // cart product get
     var cartProduct = cartBox.get("cartProducts");
+
     if (cartProduct != null) {
-      cartProducts = List.from(cartProduct);
+      cartProducts = cartProduct['products'];
+      setState(() {
+        cart['total_items'] = cartProduct['total_items'];
+        cart['total_price'] = cartProduct['total_price'];
+        cart['products'] = cartProduct['products'];
+      });
     } else {
-      cartProducts = []; // Ensure it's initialized even if cartProduct is null
+      setState(() {
+        cart['total_items'] = 0;
+        cart['total_price'] = 0;
+        cart['products'] = [];
+      });
+      cartProducts = [];
+    }
+  }
+
+  // load card
+  void loadCartProduct() {
+    var cartProduct = cartBox.get("cartProducts");
+    if (cartProduct != null) {
+      cartProducts = cartProduct['products'];
+      setState(() {
+        cart['total_items'] = cartProduct['total_items'];
+        cart['total_price'] = cartProduct['total_price'];
+        cart['products'] = cartProduct['products'];
+      });
     }
   }
 
@@ -36,23 +64,25 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // automaticallyImplyLeading: false,
         actions: [
-          TextButton.icon(
-            onPressed: () {},
-            style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(orangeColor),
-              elevation: MaterialStatePropertyAll(10),
-              shadowColor: MaterialStatePropertyAll(blueColor),
+          if (cart['products'].isNotEmpty)
+            TextButton.icon(
+              onPressed: () {},
+              style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(orangeColor),
+                elevation: MaterialStatePropertyAll(10),
+                shadowColor: MaterialStatePropertyAll(blueColor),
+              ),
+              icon: const Icon(
+                CupertinoIcons.hand_point_right,
+                color: whiteColor,
+              ),
+              label: Text(
+                Language.load("buy_now"),
+                style: const TextStyle(color: whiteColor, fontSize: 15),
+              ),
             ),
-            icon: const Icon(
-              CupertinoIcons.hand_point_right,
-              color: whiteColor,
-            ),
-            label: Text(
-              Language.load("buy_now"),
-              style: const TextStyle(color: whiteColor, fontSize: 15),
-            ),
-          ),
           const SizedBox(
             width: 15,
           ),
@@ -66,20 +96,20 @@ class _CartPageState extends State<CartPage> {
             ),
             Row(
               children: [
-                roundedBadge(Language.load('items'), 4),
+                roundedBadge(Language.load('items'), cart['total_items']),
                 const SizedBox(width: 8),
-                roundedBadge(Language.load('price'), 987564),
+                roundedBadge(Language.load('price'), cart['total_price']),
               ],
             ),
             const SizedBox(height: 10),
           ],
         ),
       ),
-      body: cartProducts.isNotEmpty
+      body: cart['products'].isNotEmpty
           ? ListView.builder(
-              itemCount: cartProducts.length,
+              itemCount: cart['products'].length,
               itemBuilder: (context, index) {
-                final product = cartProducts[index];
+                final product = cart['products'][index];
                 return Column(
                   children: [
                     ListTile(
@@ -91,23 +121,25 @@ class _CartPageState extends State<CartPage> {
                         maxLines: 1,
                       ),
                       subtitle: Text('Price: \$${product['price']}'),
-                      leading: const CircleAvatar(),
+                      leading: Image.asset(product['image']),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          incrementDecrementCartItem(Icons.add, 'increment'),
+                          incrementDecrementCartItem(product['id'], Icons.add,
+                              'increment', loadCartProduct),
                           Container(
                             width: 30,
                             height: 22,
                             color: const Color.fromARGB(55, 64, 91, 247),
-                            child: const Center(
+                            child: Center(
                               child: Text(
-                                '${1}',
-                                style: TextStyle(fontSize: 15),
+                                "${product["quantity"]}",
+                                style: const TextStyle(fontSize: 15),
                               ),
                             ),
                           ),
-                          incrementDecrementCartItem(Icons.remove, 'decrement'),
+                          incrementDecrementCartItem(product['id'],
+                              Icons.remove, 'decrement', loadCartProduct),
                           IconButton(
                             style: ButtonStyle(
                               overlayColor: MaterialStateProperty.all(
@@ -124,9 +156,9 @@ class _CartPageState extends State<CartPage> {
                               color: redColor,
                             ),
                             onPressed: () {
-                              // print(product['id']);
                               setState(() {
-                                deleteCartProduct(product['id']);
+                                deleteCartProduct(product);
+                                loadCartProduct();
                               });
                             },
                           ),
@@ -138,12 +170,18 @@ class _CartPageState extends State<CartPage> {
                 );
               },
             )
-          : const Text("Empty Cart"),
+          : Container(
+              color: whiteColor,
+              child: Center(
+                child: Image.asset("assets/images/system/empty_cart.png"),
+              ),
+            ),
     );
   }
 }
 
-Widget incrementDecrementCartItem(btnIcon, btnType) {
+Widget incrementDecrementCartItem(
+    productId, btnIcon, btnType, loadCartProduct) {
   return SizedBox(
     width: 25,
     height: 25,
@@ -176,7 +214,12 @@ Widget incrementDecrementCartItem(btnIcon, btnType) {
         size: 18,
       ),
       onPressed: () {
-        // Add logic to increment quantity
+        if (btnType == 'increment') {
+          incrementOrDecrementCartItems(productId, "increment");
+        } else {
+          incrementOrDecrementCartItems(productId, "decrement");
+        }
+        loadCartProduct();
       },
     ),
   );

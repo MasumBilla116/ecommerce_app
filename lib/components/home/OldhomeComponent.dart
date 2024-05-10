@@ -236,7 +236,7 @@ class _HomeComponentState extends State<HomeComponent> {
                     // products
                     spaceTopBottom,
                     sectionTitleComponent(Language.load("all_products")),
-                    allProductsComponent(context),
+                    // allProductsComponent(context),
                     spaceTopBottom,
                   ],
                 ),

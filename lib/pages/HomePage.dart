@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   dynamic wishlistProdctIds = [];
   final _wishlistBox = Hive.box("wishlistBox");
-
+  final cartBox = Hive.box("cartBox");
   @override
   void initState() {
     super.initState();
@@ -31,30 +31,6 @@ class _HomePageState extends State<HomePage> {
       wishlistProdctIds = wishlistIds;
     }
   }
-
-  List<Widget> topSlideItems = const [
-    Image(image: AssetImage("assets/images/carousel/add-1.jpg")),
-    Image(image: AssetImage("assets/images/carousel/add-2.jpg")),
-    Image(image: AssetImage("assets/images/carousel/add-3.jpeg")),
-    Image(
-      image: AssetImage("assets/images/carousel/add-5.jpg"),
-    ),
-    Image(
-      image: AssetImage("assets/images/carousel/add-7.jpg"),
-    ),
-  ];
-
-  List<Widget> secondSlideItems = const [
-    Image(
-      image: AssetImage("assets/images/carousel/add-5.jpg"),
-    ),
-    Image(image: AssetImage("assets/images/carousel/add-2.jpg")),
-    Image(
-      image: AssetImage("assets/images/carousel/add-7.jpg"),
-    ),
-    Image(image: AssetImage("assets/images/carousel/add-3.jpeg")),
-    Image(image: AssetImage("assets/images/carousel/add-1.jpg")),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     // carousel Component 1
                     spaceTopBottom,
-                    CarouselComponent(topSlideItems),
+                    CarouselComponent(topSlideDemoItems),
                     spaceTopBottom,
                     // buttons
                     Row(
@@ -95,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     spaceTopBottom,
                     // carousel Component 2
-                    CarouselComponent(secondSlideItems),
+                    CarouselComponent(secondSliderDemoItems),
                     spaceTopBottom,
                     // buttons
                     Row(
@@ -187,11 +163,11 @@ class _HomePageState extends State<HomePage> {
                     ),
                     spaceTopBottom,
                     // carousel Component 3
-                    CarouselComponent(secondSlideItems),
+                    CarouselComponent(secondSliderDemoItems),
                     // products
                     spaceTopBottom,
                     sectionTitleComponent(Language.load("all_products")),
-                    allProductsComponent(context),
+                    const AllProductsComponent(),
                     spaceTopBottom,
                   ],
                 ),

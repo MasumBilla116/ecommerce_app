@@ -8,10 +8,8 @@ Widget productComponent(Map<String, dynamic> product,
   double lessPrice = 0.0;
 
   if (product['discount'] != null) {
-    lessPrice =
-        (double.parse(product['discount']) * double.parse(product['price'])) /
-            100;
-    discountPrice = double.parse(product['price']) - lessPrice;
+    lessPrice = (product['discount'] * product['price']) / 100;
+    discountPrice = product['price'] - lessPrice;
   }
 
   return Container(

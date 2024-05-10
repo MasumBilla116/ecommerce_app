@@ -44,7 +44,8 @@ class _ProductGridViewComponentState extends State<ProductGridViewComponent> {
 
     return ElevatedButton(
       onPressed: () {
-        goToProductDetailPage(context, 1, widget.product['title']);
+        goToProductDetailPage(
+            context, widget.product['id'], widget.product['title']);
       },
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
@@ -102,6 +103,7 @@ class _ProductGridViewComponentState extends State<ProductGridViewComponent> {
               ],
             ),
           ),
+          // wishlist love icon button
           IconButton(
             icon: loveIcon,
             color: const Color.fromARGB(131, 255, 123, 0),

@@ -56,4 +56,10 @@ goToProductDetailPage(BuildContext context, productId, productTitle) {
 
 goToAddToCartProductPage(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+  // Navigator.pushReplacement(
+  //   context,
+  //   MaterialPageRoute(
+  //     builder: (context) => CartPage(),
+  //   ),
+  // );
 }

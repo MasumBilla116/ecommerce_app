@@ -12,6 +12,7 @@ import 'package:ecommerce/pages/HomePage.dart';
 import 'package:ecommerce/pages/ProfilePage.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
+import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:hive_flutter/hive_flutter.dart";
@@ -77,9 +78,9 @@ class _HomeState extends State<Home> {
   //-----------------------
   // cart
   void updateCartItems() {
-    final cartItems = cartBox.get("cartIds");
+    final cartProducts = cartBox.get("cartProducts");
     setState(() {
-      totalCartItems = cartItems != null ? cartItems.length : 0;
+      totalCartItems = cartProducts != null ? cartProducts['total_items'] : 0;
     });
   }
 
@@ -179,7 +180,39 @@ class _HomeState extends State<Home> {
                   icon: searchIcon,
                   color: whiteColor,
                 ),
-                addToCartAppBarBtn(context, totalCartItems),
+                // addToCartAppBarBtn(context, totalCartItems),
+                Stack(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        goToAddToCartProductPage(context);
+                        // setState(() {
+                        //   btmNavigationController.navigationIndex = 2;
+                        // });
+                      },
+                      icon: shoppingCartIcon,
+                      color: whiteColor,
+                    ),
+                    Positioned(
+                      right: 5,
+                      bottom: 25,
+                      child: Container(
+                        width: 18,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          color: orangeColor,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "${totalCartItems}",
+                            style: const TextStyle(color: whiteColor),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 TextButton(
                   onPressed: () {
                     changeLanguage(context);

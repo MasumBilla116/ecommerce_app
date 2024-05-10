@@ -103,9 +103,8 @@ class _AddToCardButtonState extends State<AddToCardButton> {
         /**
        * Note: Don't remove _showAddCardDialog method 
        * this method for buyer
+        ** _showAddCardDialog(context);  // dont remove
       */
-        // _showAddCardDialog(context);  // dont remove
-
         setState(() {
           addToCart(widget.cartProduct);
           if (widget.updateCartItems != null) {
@@ -138,7 +137,9 @@ class _AddToCardButtonState extends State<AddToCardButton> {
             width: 5,
           ),
           Text(
-            Language.load("add_to_cart"),
+            widget.isExistInCartProduct == true
+                ? Language.load("already_added")
+                : Language.load("add_to_cart"),
             style: const TextStyle(
               color: whiteColor,
               fontWeight: FontWeight.bold,

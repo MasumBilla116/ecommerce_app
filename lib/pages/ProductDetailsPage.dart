@@ -36,28 +36,20 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
 // variables
   var bookMark = false;
   var isShare = false;
-  var cardProduct = 1;
   var totalCartItems = 0;
-  var cartProductIds = [];
+  dynamic cartProducts = [];
 
   // init state
   @override
   void initState() {
-    final cartItems = cartBox.get("cartIds");
+    final cart = cartBox.get("cartProducts");
     super.initState();
     // update carts items
     setState(() {
-      totalCartItems = cartItems != null ? cartItems.length : 0;
-      cartProductIds = cartItems != null ? cartItems : [];
+      totalCartItems = cart != null ? cart['total_items'] : 0;
+      cartProducts = cart != null ? cart['products'] : [];
     });
   }
-
-// json for demo data
-  var product = {
-    "id": 4,
-    "title": 'Cart product title 4',
-    "price": 4,
-  };
 
   var tabButtons = [
     {
@@ -70,24 +62,10 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
 
   // handler
   void updateCartItems() {
-    final cartItems = cartBox.get("cartIds");
+    final cartProducts = cartBox.get("cartProducts");
     setState(() {
-      totalCartItems = cartItems != null ? cartItems.length : 0;
+      totalCartItems = cartProducts != null ? cartProducts['total_items'] : 0;
     });
-  }
-
-  void increment() {
-    setState(() {
-      cardProduct += 1;
-    });
-  }
-
-  void decrement() {
-    if (cardProduct > 1) {
-      setState(() {
-        cardProduct -= 1;
-      });
-    }
   }
 
   void bookMarkProduct() {
@@ -100,6 +78,23 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
     setState(() {
       isShare = !isShare;
     });
+  }
+
+  // find product for add to cart product
+  Map<String, dynamic>? findProductById(int proId) {
+    var pro = demoProductList.firstWhere((item) => item['id'] == proId);
+    if (pro.isEmpty) {
+      return null;
+    }
+    return pro;
+  }
+
+  bool isExistInCart(productId) {
+    var find = cartProducts.where((product) => product['id'] == productId);
+    if (find.length == 0) {
+      return false;
+    }
+    return true;
   }
 
   @override
@@ -343,11 +338,11 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                           children: [
                             Expanded(
                               child: AddToCardButton(
-                                cartProduct: product,
-                                updateCartItems: updateCartItems,
-                                isExistInCartProduct:
-                                    cartProductIds.contains(product['id']),
-                              ),
+                                  cartProduct:
+                                      findProductById(widget.productId),
+                                  updateCartItems: updateCartItems,
+                                  isExistInCartProduct:
+                                      isExistInCart(widget.productId)),
                             ),
                             const SizedBox(
                               width: 10,
