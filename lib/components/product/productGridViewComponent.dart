@@ -36,10 +36,8 @@ class _ProductGridViewComponentState extends State<ProductGridViewComponent> {
     double lessPrice = 0.0;
 
     if (widget.product['discount'] != null) {
-      lessPrice = (double.parse(widget.product['discount']) *
-              double.parse(widget.product['price'])) /
-          100;
-      discountPrice = double.parse(widget.product['price']) - lessPrice;
+      lessPrice = (widget.product['discount'] * widget.product['price']) / 100;
+      discountPrice = widget.product['price'] - lessPrice;
     }
 
     return ElevatedButton(
@@ -95,7 +93,7 @@ class _ProductGridViewComponentState extends State<ProductGridViewComponent> {
                     const Spacer(),
                     if (widget.product['discount'] != null)
                       Text(
-                        widget.product['discount'] + "% Off",
+                        "${widget.product['discount']} % Off",
                         style: const TextStyle(color: Colors.red, fontSize: 10),
                       )
                   ],

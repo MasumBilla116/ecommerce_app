@@ -3,6 +3,7 @@ import 'package:ecommerce/components/product/productGridViewComponent.dart';
 import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/utils/app.dart';
 import 'package:flutter/material.dart';
+import "package:ecommerce/utils/demoData.dart";
 
 class CategoryProductsPage extends StatefulWidget {
   final int categoryId;
@@ -35,73 +36,6 @@ class _CategoryProductsPage extends State<CategoryProductsPage> {
       "name": "Laptop",
     },
   ];
-
-  final products = [
-    {
-      "image": "assets/images/brands/p1.jpeg",
-      "title": "ASUS Laptop. (Core 8)",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "550",
-      "discount": "10"
-    },
-    {
-      "image": "assets/images/brands/p2.jpeg",
-      "title": "Modern Cosmetics.",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p3.jpeg",
-      "title": "HP Laptop. (Core 5)",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p4.jpeg",
-      "title": "Lotto Ladies Shoes",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p5.jpeg",
-      "title": "Ladies Lather Bag",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p6.jpeg",
-      "title": "Lotto Ladies Sport Shoes",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p7.jpeg",
-      "title": "Ladies Sunglasses",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-    {
-      "image": "assets/images/brands/p2.jpeg",
-      "title": "Modern Cosmetics.",
-      "description":
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum",
-      "price": "650",
-      "discount": "15"
-    },
-  ];
   @override
   Widget build(BuildContext context) {
     return bgTopImage(
@@ -114,7 +48,7 @@ class _CategoryProductsPage extends State<CategoryProductsPage> {
               scrollDirection: Axis.horizontal,
               child: Container(
                 padding: const EdgeInsets.all(8),
-                color: Color.fromARGB(255, 13, 112, 74),
+                color: const Color.fromARGB(255, 13, 112, 74),
                 child: Row(
                   children: List.generate(
                     subCategoryList.length,
@@ -149,9 +83,10 @@ class _CategoryProductsPage extends State<CategoryProductsPage> {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: List.generate(
-                            products.length,
+                            // products.length,
+                            demoProductList.length,
                             (index) => ProductGridViewComponent(
-                                product: products[index])),
+                                product: demoProductList[index])),
                       ),
                       ElevatedButton(
                         onPressed: () {},

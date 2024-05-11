@@ -15,6 +15,7 @@ import 'package:ecommerce/utils/icons.dart';
 import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import "package:hive_flutter/hive_flutter.dart";
 
 final GlobalKey<_HomeState> homeKey = GlobalKey<_HomeState>();
@@ -180,39 +181,7 @@ class _HomeState extends State<Home> {
                   icon: searchIcon,
                   color: whiteColor,
                 ),
-                // addToCartAppBarBtn(context, totalCartItems),
-                Stack(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        goToAddToCartProductPage(context);
-                        // setState(() {
-                        //   btmNavigationController.navigationIndex = 2;
-                        // });
-                      },
-                      icon: shoppingCartIcon,
-                      color: whiteColor,
-                    ),
-                    Positioned(
-                      right: 5,
-                      bottom: 25,
-                      child: Container(
-                        width: 18,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: orangeColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "${totalCartItems}",
-                            style: const TextStyle(color: whiteColor),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                addToCartAppBarBtn(context, totalCartItems),
                 TextButton(
                   onPressed: () {
                     changeLanguage(context);

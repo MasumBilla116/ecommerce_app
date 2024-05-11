@@ -8,7 +8,10 @@ Widget bottomNavigation(
     BottomNavigationController btmNavigationController, setState) {
   return BottomNavigationBar(
     items: [
-      BottomNavigationBarItem(icon: homeIcon, label: Language.load("home")),
+      BottomNavigationBarItem(
+        icon: homeIcon,
+        label: Language.load("home"),
+      ),
       BottomNavigationBarItem(
           icon: categoryIcon, label: Language.load("category")),
       BottomNavigationBarItem(

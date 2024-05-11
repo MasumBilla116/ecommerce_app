@@ -64,7 +64,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         actions: [
           if (cart['products'].isNotEmpty)
             TextButton.icon(
@@ -186,6 +186,7 @@ Widget incrementDecrementCartItem(
     width: 25,
     height: 25,
     child: IconButton(
+      highlightColor: orangeColor,
       style: ButtonStyle(
         padding: MaterialStateProperty.all(const EdgeInsets.all(2)),
         backgroundColor: MaterialStateProperty.all(blueColor),
