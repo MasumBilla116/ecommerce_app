@@ -3,6 +3,7 @@ Map<String, String> lang = {
   'category': 'Category',
   'cart': 'Cart',
   'add': "Add",
+  "delete": "Delete",
   'cancel': "Cancel",
   'profile': 'Profile',
   'add_to_cart': 'Add to Cart',
@@ -75,6 +76,9 @@ Map<String, String> lang = {
   "cart_product": 'Cart Products',
   "items": "Items",
   "already_added": "Already added",
+  "clear_cart_items": "Clear Cart Items",
+  "order_now": "Order Now",
+  "are_you_sure_clear_cart_item": "Are Your Sure Clear Cart Items?",
 };
 
 String getEnglishLang(String key) {

@@ -3,6 +3,7 @@ Map<String, String> lang = {
   'category': 'প্রকার',
   'cart': 'কার্ট',
   'add': 'যোগ করুন',
+  "delete": "মুছে ফেলুন",
   'cancel': 'বাতিল করুন',
   'profile': 'প্রোফাইল',
   'add_to_cart': 'কার্ডে যোগ করুন',
@@ -75,6 +76,10 @@ Map<String, String> lang = {
   "cart_product": 'কার্টের পণ্য',
   "items": "আইটেমস্‌",
   "already_added": "অ্যাড আছে",
+  "clear_cart_items": "সব মুছে ফেলুন",
+  "order_now": "অর্ডার করুন",
+  "are_you_sure_clear_cart_item_bangla":
+      "আপনি কি নিশ্চিত যে কার্ট আইটেমগুলি মুছে ফেলতে চান?",
 };
 
 String getBanglaLang(String key) {

@@ -3,6 +3,7 @@ import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/method/addTocart.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
+import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -57,36 +58,77 @@ class _CartPageState extends State<CartPage> {
         cart['total_price'] = cartProduct['total_price'];
         cart['products'] = cartProduct['products'];
       });
+    } else {
+      cart = {
+        "total_items": 0,
+        "total_price": 0,
+        "products": [],
+      };
     }
+  }
+
+  // clear cart alert box
+  void clearCartItem() {
+    showDialog(context: context, builder: (context) => _clearCart(context));
+  }
+
+  Widget _clearCart(BuildContext context) {
+    return AlertDialog(
+      content: Text(
+        Language.load("are_you_sure_clear_cart_item"),
+        style: const TextStyle(fontSize: 18),
+      ),
+      actions: [
+        TextButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(greenColor)),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text(
+            Language.load("cancel"),
+            style: const TextStyle(color: whiteColor),
+          ),
+        ),
+        TextButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(lightRedColor)),
+          onPressed: () {
+            setState(() {
+              clearCartProduct();
+              loadCartProduct();
+              Navigator.pop(context);
+            });
+          },
+          child: Text(
+            Language.load("delete"),
+            style: const TextStyle(color: whiteColor),
+          ),
+        ),
+      ],
+    );
+  }
+
+// naviagate to order page
+  void routeOrderPage() {
+    goToOrderPage(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: cart['products'].isNotEmpty
+          ? Row(
+              children: [
+                bottomSheetBtn(clearCartItem, onlyDeleteIcon,
+                    Language.load("clear_cart_items"), orangeColor),
+                bottomSheetBtn(routeOrderPage, onlyShoppingCartIcon,
+                    Language.load("order_now"), baseColor),
+              ],
+            )
+          : null,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        actions: [
-          if (cart['products'].isNotEmpty)
-            TextButton.icon(
-              onPressed: () {},
-              style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(orangeColor),
-                elevation: MaterialStatePropertyAll(10),
-                shadowColor: MaterialStatePropertyAll(blueColor),
-              ),
-              icon: const Icon(
-                CupertinoIcons.hand_point_right,
-                color: whiteColor,
-              ),
-              label: Text(
-                Language.load("buy_now"),
-                style: const TextStyle(color: whiteColor, fontSize: 15),
-              ),
-            ),
-          const SizedBox(
-            width: 15,
-          ),
-        ],
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -165,7 +207,11 @@ class _CartPageState extends State<CartPage> {
                         ],
                       ),
                     ),
-                    const Divider(),
+                    cart['products'].length == (index + 1)
+                        ? const SizedBox(
+                            height: 50,
+                          )
+                        : const Divider(),
                   ],
                 );
               },
@@ -178,6 +224,33 @@ class _CartPageState extends State<CartPage> {
             ),
     );
   }
+}
+
+Widget bottomSheetBtn(handleMethod, btnIcon, btnText, bgColor) {
+  return Expanded(
+    child: ElevatedButton.icon(
+      style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll(bgColor),
+        elevation: const MaterialStatePropertyAll(0),
+        shape: MaterialStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(0),
+          ),
+        ),
+      ),
+      onPressed: () {
+        handleMethod();
+      },
+      label: Text(
+        style: const TextStyle(color: whiteColor),
+        btnText,
+      ),
+      icon: Icon(
+        btnIcon,
+        color: whiteColor,
+      ),
+    ),
+  );
 }
 
 Widget incrementDecrementCartItem(

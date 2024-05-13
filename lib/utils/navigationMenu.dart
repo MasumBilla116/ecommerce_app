@@ -2,6 +2,7 @@ import 'package:ecommerce/components/category/categoryProductComponent.dart';
 import 'package:ecommerce/pages/CartPage.dart';
 import 'package:ecommerce/pages/CategoryProductsPage.dart';
 import 'package:ecommerce/pages/Home.dart';
+import 'package:ecommerce/pages/OrderPage.dart';
 import 'package:ecommerce/pages/ProductDetailsPage.dart';
 import 'package:ecommerce/pages/auth/Login.dart';
 import 'package:ecommerce/pages/auth/Register.dart';
@@ -62,4 +63,11 @@ goToAddToCartProductPage(BuildContext context) {
   //     builder: (context) => CartPage(),
   //   ),
   // );
+}
+
+goToOrderPage(context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => OrderPage()),
+  );
 }
