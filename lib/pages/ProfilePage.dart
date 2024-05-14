@@ -64,6 +64,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Icons.edit_square,
                             color: whiteColor,
                           ),
+                          style: const ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(baseDarkColor)),
                         ),
                         ElevatedButton(
                           onPressed: () {},

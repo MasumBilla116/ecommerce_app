@@ -1,4 +1,5 @@
 import 'package:ecommerce/components/badge/roundedBadge.dart';
+import 'package:ecommerce/components/cart/emptyCart.dart';
 import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/method/addTocart.dart';
 import 'package:ecommerce/utils/colors.dart';
@@ -190,7 +191,9 @@ class _CartPageState extends State<CartPage> {
                               iconSize: MaterialStateProperty.all(20),
                               padding: MaterialStateProperty.all(
                                 const EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 5),
+                                  horizontal: 5,
+                                  vertical: 5,
+                                ),
                               ),
                             ),
                             icon: const Icon(
@@ -207,21 +210,12 @@ class _CartPageState extends State<CartPage> {
                         ],
                       ),
                     ),
-                    cart['products'].length == (index + 1)
-                        ? const SizedBox(
-                            height: 50,
-                          )
-                        : const Divider(),
+                    const Divider(),
                   ],
                 );
               },
             )
-          : Container(
-              color: whiteColor,
-              child: Center(
-                child: Image.asset("assets/images/system/empty_cart.png"),
-              ),
-            ),
+          : emptyCart(),
     );
   }
 }

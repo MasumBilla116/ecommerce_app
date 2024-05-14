@@ -36,18 +36,23 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
 // variables
   var bookMark = false;
   var isShare = false;
-  var totalCartItems = 0;
-  dynamic cartProducts = [];
+  dynamic cart = {
+    "total_items": 0,
+    "total_price": 0,
+    "products": [],
+  };
 
   // init state
   @override
   void initState() {
-    final cart = cartBox.get("cartProducts");
+    final cartItems = cartBox.get("cartProducts");
     super.initState();
     // update carts items
     setState(() {
-      totalCartItems = cart != null ? cart['total_items'] : 0;
-      cartProducts = cart != null ? cart['products'] : [];
+      if (cartItems != null) {
+        cart['total_items'] = cartItems['total_items'];
+        cart['products'] = cartItems['products'];
+      }
     });
   }
 
@@ -62,9 +67,12 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
 
   // handler
   void updateCartItems() {
-    final cartProducts = cartBox.get("cartProducts");
+    final cartItems = cartBox.get("cartProducts");
     setState(() {
-      totalCartItems = cartProducts != null ? cartProducts['total_items'] : 0;
+      if (cartItems != null) {
+        cart['total_items'] = cartItems['total_items'];
+        cart['products'] = cartItems['products'];
+      }
     });
   }
 
@@ -90,7 +98,7 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
   }
 
   bool isExistInCart(productId) {
-    var find = cartProducts.where((product) => product['id'] == productId);
+    var find = cart['products'].where((product) => product['id'] == productId);
     if (find.length == 0) {
       return false;
     }
@@ -105,15 +113,15 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
         appBar: AppBar(
           actions: [
             // add to cart app bar btn
-            addToCartAppBarBtn(context, totalCartItems),
+            addToCartAppBarBtn(context, cart['total_items']),
             IconButton(
               onPressed: () {
                 shareProduct();
               },
               icon: shareIcon,
               style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(Color.fromARGB(255, 1, 110, 83)),
+                backgroundColor: MaterialStateProperty.all(
+                    const Color.fromARGB(255, 1, 110, 83)),
                 iconColor: MaterialStateProperty.all(
                     isShare ? orangeColor : whiteColor),
               ),
@@ -124,8 +132,8 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
               },
               icon: bookMark ? loveFillIcon : loveIcon,
               style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(Color.fromARGB(255, 1, 110, 83)),
+                backgroundColor: MaterialStateProperty.all(
+                    const Color.fromARGB(255, 1, 110, 83)),
                 iconColor: MaterialStateProperty.all(orangeColor),
               ),
             ),
@@ -139,8 +147,8 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
             },
             icon: arrowTurnUpLeftIcon,
             style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(Color.fromARGB(255, 1, 110, 83)),
+              backgroundColor: MaterialStateProperty.all(
+                  const Color.fromARGB(255, 1, 110, 83)),
               iconColor: MaterialStateProperty.all(whiteColor),
             ),
           ),
@@ -336,17 +344,19 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                         topBottomContentSpace,
                         Row(
                           children: [
+                            // add to cart button
                             Expanded(
                               child: AddToCardButton(
-                                  cartProduct:
-                                      findProductById(widget.productId),
-                                  updateCartItems: updateCartItems,
-                                  isExistInCartProduct:
-                                      isExistInCart(widget.productId)),
+                                cartProduct: findProductById(widget.productId),
+                                updateCartItems: updateCartItems,
+                                isExistInCartProduct:
+                                    isExistInCart(widget.productId),
+                              ),
                             ),
                             const SizedBox(
                               width: 10,
                             ),
+                            // order now button
                             const Expanded(
                               child: OrderNowButton(),
                             ),
@@ -355,7 +365,7 @@ class _ProductDetailsPage extends State<ProductDetailsPage> {
                         // tap component
                         topBottomContentSpace,
                         topBottomContentSpace,
-                        Container(
+                        SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

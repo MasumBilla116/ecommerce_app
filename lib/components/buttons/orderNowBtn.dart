@@ -39,7 +39,7 @@ class _OrderNowButtonState extends State<OrderNowButton> {
             width: 5,
           ),
           Text(
-            Language.load("buy_now"),
+            Language.load("order_now"),
             style: const TextStyle(
               color: whiteColor,
               fontWeight: FontWeight.bold,

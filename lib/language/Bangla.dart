@@ -80,6 +80,12 @@ Map<String, String> lang = {
   "order_now": "অর্ডার করুন",
   "are_you_sure_clear_cart_item_bangla":
       "আপনি কি নিশ্চিত যে কার্ট আইটেমগুলি মুছে ফেলতে চান?",
+  "confirm_order": "অর্ডার নিশ্চিত করুন",
+  "product": "পণ্য",
+  "shipping_charge": "শিপিং চার্জ",
+  "additional_charge": "অতিরিক্ত চার্জ",
+  "product_price": "পণ্যের মূল্য",
+  "payable_amount": "পরিশোধযোগ্য পরিমাণ"
 };
 
 String getBanglaLang(String key) {

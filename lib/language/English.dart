@@ -79,6 +79,12 @@ Map<String, String> lang = {
   "clear_cart_items": "Clear Cart Items",
   "order_now": "Order Now",
   "are_you_sure_clear_cart_item": "Are Your Sure Clear Cart Items?",
+  "confirm_order": "Confirm Order",
+  "product": "Product",
+  "shipping_charge": "Shipping Charge",
+  "additional_charge": "Additional Charge",
+  "product_price": "Product Price",
+  "payable_amount": "Payable Amount",
 };
 
 String getEnglishLang(String key) {
