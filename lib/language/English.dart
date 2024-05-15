@@ -85,6 +85,17 @@ Map<String, String> lang = {
   "additional_charge": "Additional Charge",
   "product_price": "Product Price",
   "payable_amount": "Payable Amount",
+  "upload_profile": "Upload Profile",
+  "edit_profile": "Edit Profile",
+  "name": 'Name',
+  "phone_number": "Phone Number",
+  "address": "Address",
+  "update": "Update",
+  "update_profile": "Update Profile",
+  "enter_your_name": "Enter Your Name",
+  "enter_your_phone_number": "Enter Your Phone Number",
+  "enter_your_address": "Enter Your Address",
+  "enter_your_shipping_address": "Enter Your Shipping Address",
 };
 
 String getEnglishLang(String key) {

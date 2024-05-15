@@ -1,11 +1,10 @@
-import 'package:ecommerce/components/circle/textCircle.dart';
 import 'package:ecommerce/components/inputFields/inputField.dart';
+import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/utils/app.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:file_picker/file_picker.dart';
 
 class ProfileEditPage extends StatefulWidget {
   State<ProfileEditPage> createState() => _ProfileEditPage();
@@ -29,7 +28,7 @@ class _ProfileEditPage extends State<ProfileEditPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWithLeading("Edit Profile", context),
+      appBar: appBarWithLeading(Language.load("update_profile"), context),
       body: Container(
           padding: const EdgeInsets.all(15),
           child: Column(
@@ -47,7 +46,7 @@ class _ProfileEditPage extends State<ProfileEditPage> {
                   ),
                   ElevatedButton(
                     onPressed: _pickFile,
-                    child: Text("Upload Profile"),
+                    child: Text(Language.load("upload_profile")),
                     style: ButtonStyle(
                       backgroundColor:
                           const MaterialStatePropertyAll(transparentColor),
@@ -66,18 +65,21 @@ class _ProfileEditPage extends State<ProfileEditPage> {
                 ],
               ),
               const Divider(),
-              inputField(title: 'Name', hintText: "Enter your name"),
+              inputField(
+                  title: Language.load("name"),
+                  hintText: Language.load("enter_your_name")),
               const SizedBox(
                 height: 10,
               ),
               inputField(
-                  title: 'Phone Number', hintText: "Enter your phone number"),
+                  title: Language.load("phone_number"),
+                  hintText: Language.load("enter_your_phone_number")),
               const SizedBox(
                 height: 10,
               ),
               inputField(
-                  title: 'Address ',
-                  hintText: "Enter your address",
+                  title: Language.load("address"),
+                  hintText: Language.load("enter_your_address"),
                   maxLine: 4),
               const SizedBox(
                 height: 15,
@@ -86,7 +88,7 @@ class _ProfileEditPage extends State<ProfileEditPage> {
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Text(
-                    "Update",
+                    Language.load("update_profile"),
                     style: const TextStyle(color: whiteColor),
                   ),
                   style: ButtonStyle(

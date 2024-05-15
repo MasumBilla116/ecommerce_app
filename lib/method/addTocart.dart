@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void addToCart(cartItem) {

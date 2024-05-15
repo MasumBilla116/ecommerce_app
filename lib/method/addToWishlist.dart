@@ -4,9 +4,6 @@ final wishlistBox = Hive.box('wishlistBox');
 void wishlist(product) {
   dynamic wishlistProducts = wishlistBox.get('wishlistProducts');
   dynamic wishlistProductIds = wishlistBox.get('wishlistProductIds');
-  // print(product);
-  // print(wishlistProducts);
-  // print(wishlistProductIds);
 
   if (wishlistProducts == null || wishlistProductIds == null) {
     wishlistProducts = [product];

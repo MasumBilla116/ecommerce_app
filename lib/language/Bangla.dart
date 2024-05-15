@@ -85,7 +85,18 @@ Map<String, String> lang = {
   "shipping_charge": "শিপিং চার্জ",
   "additional_charge": "অতিরিক্ত চার্জ",
   "product_price": "পণ্যের মূল্য",
-  "payable_amount": "পরিশোধযোগ্য পরিমাণ"
+  "payable_amount": "পরিশোধযোগ্য পরিমাণ",
+  "upload_profile": "প্রোফাইল আপলোড করুন",
+  "edit_profile": "প্রোফাইল সম্পাদনা করুন",
+  "name": "নাম",
+  "phone_number": "ফোন নম্বর",
+  "address": "ঠিকানা",
+  "update": "আপডেট",
+  "update_profile": "প্রোফাইল আপডেট করুন",
+  "enter_your_name": "আপনার নাম লিখুন",
+  "enter_your_phone_number": "আপনার ফোন নম্বর লিখুন",
+  "enter_your_address": "আপনার ঠিকানা লিখুন",
+  "enter_your_shipping_address": "আপনার শিপিং ঠিকানা লিখুন"
 };
 
 String getBanglaLang(String key) {
