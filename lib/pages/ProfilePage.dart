@@ -3,6 +3,7 @@ import 'package:ecommerce/components/background/BgTopImage.dart';
 import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
+import 'package:ecommerce/utils/navigationMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -58,8 +59,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Column(
                       children: [
+                        // profile eidt
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            goToProfileEditPage(context);
+                          },
                           icon: const Icon(
                             Icons.edit_square,
                             color: whiteColor,

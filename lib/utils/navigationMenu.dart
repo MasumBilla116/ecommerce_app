@@ -4,6 +4,7 @@ import 'package:ecommerce/pages/CategoryProductsPage.dart';
 import 'package:ecommerce/pages/Home.dart';
 import 'package:ecommerce/pages/OrderPage.dart';
 import 'package:ecommerce/pages/ProductDetailsPage.dart';
+import 'package:ecommerce/pages/ProfileEditPage.dart';
 import 'package:ecommerce/pages/auth/Login.dart';
 import 'package:ecommerce/pages/auth/Register.dart';
 import 'package:flutter/material.dart';
@@ -57,12 +58,6 @@ goToProductDetailPage(BuildContext context, productId, productTitle) {
 
 goToAddToCartProductPage(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
-  // Navigator.pushReplacement(
-  //   context,
-  //   MaterialPageRoute(
-  //     builder: (context) => CartPage(),
-  //   ),
-  // );
 }
 
 goToOrderPage(context) {
@@ -70,4 +65,9 @@ goToOrderPage(context) {
     context,
     MaterialPageRoute(builder: (context) => OrderPage()),
   );
+}
+
+goToProfileEditPage(BuildContext context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => ProfileEditPage()));
 }
