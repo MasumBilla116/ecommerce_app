@@ -96,6 +96,9 @@ Map<String, String> lang = {
   "enter_your_phone_number": "Enter Your Phone Number",
   "enter_your_address": "Enter Your Address",
   "enter_your_shipping_address": "Enter Your Shipping Address",
+  // -----------------------------------------
+  "setting": "Settings",
+  "register": "Register",
 };
 
 String getEnglishLang(String key) {

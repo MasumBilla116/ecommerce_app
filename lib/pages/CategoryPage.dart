@@ -8,9 +8,7 @@ import 'package:ecommerce/utils/string.dart';
 import 'package:flutter/material.dart';
 
 class CategoryPage extends StatefulWidget {
-  final BottomNavigationController btmNavigationController;
-  const CategoryPage({required this.btmNavigationController, Key? key})
-      : super(key: key);
+  const CategoryPage({Key? key}) : super(key: key);
   @override
   State<CategoryPage> createState() => _CategoryPageState();
 }

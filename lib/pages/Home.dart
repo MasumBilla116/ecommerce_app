@@ -9,6 +9,7 @@ import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/pages/CartPage.dart';
 import 'package:ecommerce/pages/CategoryPage.dart';
 import 'package:ecommerce/pages/HomePage.dart';
+import 'package:ecommerce/pages/OrderPage.dart';
 import 'package:ecommerce/pages/ProfilePage.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
@@ -68,9 +69,7 @@ class _HomeState extends State<Home> {
   // navigation bottom page items
   var navigationTabItems = [
     HomePage(),
-    CategoryPage(
-      btmNavigationController: BottomNavigationController(),
-    ),
+    CategoryPage(),
     CartPage(),
     ProfilePage(),
   ];
@@ -163,18 +162,66 @@ class _HomeState extends State<Home> {
     );
   }
 
+  final drawerListPageRoute = [
+    Home(),
+    CategoryPage(),
+    CartPage(),
+    ProfilePage(),
+  ];
+
+  void handleDrawerListRoute(page) {
+    // if (page != null) {
+    //   Navigator.pushReplacement(context,
+    //       MaterialPageRoute(builder: (context) => drawerListPageRoute[page]));
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: bottomNavigation(btmNavigationController, setState),
       body: navigationTabItems[btmNavigationController.navigationIndex],
+      drawer: Drawer(
+        backgroundColor: whiteColor,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            // Drawer header
+            DrawerHeader(
+              decoration: const BoxDecoration(color: baseColor),
+              child: Column(
+                children: [
+                  ProfileComponent(),
+                ],
+              ),
+            ),
+            drawerListItem(
+                handleDrawerListRoute, 0, Language.load("home"), homeIcon),
+            drawerListItem(handleDrawerListRoute, 1, Language.load("category"),
+                categoryIcon),
+            drawerListItem(handleDrawerListRoute, 2, Language.load("cart"),
+                shoppingCartPlusIcon),
+            drawerListItem(
+                handleDrawerListRoute, 3, Language.load("profile"), personIcon),
+            drawerListItem(handleDrawerListRoute, 0, Language.load("register"),
+                registerIcon),
+            drawerListItem(
+                handleDrawerListRoute, 0, Language.load("login"), loginIcon),
+            drawerListItem(
+                handleDrawerListRoute, 0, Language.load("logout"), logoutIcon),
+            drawerListItem(handleDrawerListRoute, 0, Language.load("setting"),
+                settingIcon),
+          ],
+        ),
+      ),
       appBar: btmNavigationController.navigationIndex != 3
           ? AppBar(
-              leading: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.menu),
-                color: whiteColor,
-              ),
+              // leading: IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(Icons.menu),
+              //   color: whiteColor,
+              // ),
+              iconTheme: const IconThemeData(color: whiteColor),
               actions: [
                 IconButton(
                   onPressed: () {
@@ -201,4 +248,27 @@ class _HomeState extends State<Home> {
           : null,
     );
   }
+}
+
+Widget drawerListItem(method, index, title, icon) {
+  return Expanded(
+    child: Container(
+        decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 248, 247, 242),
+            border: Border(
+                bottom: BorderSide(
+                    width: 1,
+                    color: Color.fromARGB(255, 235, 234, 231),
+                    style: BorderStyle.solid))),
+        child: GestureDetector(
+          onTap: () {
+            method(index);
+          },
+          child: ListTile(
+            title: Text(title),
+            leading: icon,
+            iconColor: baseColor,
+          ),
+        )),
+  );
 }

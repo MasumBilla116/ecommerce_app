@@ -17,6 +17,7 @@ const loveIcon = Icon(CupertinoIcons.suit_heart);
 const loveFillIcon = Icon(
   CupertinoIcons.suit_heart_fill,
 );
+
 const arrowTurnUpLeftIcon = Icon(CupertinoIcons.arrow_turn_up_left);
 const listIcon = Icon(Icons.list);
 const messageIcon = Icon(Icons.message);
@@ -25,6 +26,10 @@ const thumbupIcon = Icon(CupertinoIcons.hand_thumbsup);
 const thumbdownIcon = Icon(CupertinoIcons.hand_thumbsdown);
 const reviewIcon = Icon(CupertinoIcons.chat_bubble_text);
 const deleteIcon = Icon(CupertinoIcons.delete);
+const settingIcon = Icon(CupertinoIcons.settings);
+const logoutIcon = Icon(Icons.logout);
+const loginIcon = Icon(Icons.login);
+const registerIcon = Icon(Icons.app_registration_rounded);
 
 // Only Icon Provider
 const onlyHomeIcon = CupertinoIcons.home;
@@ -49,3 +54,7 @@ const onlyThumbupIcon = CupertinoIcons.hand_thumbsup;
 const onlyThumbdownIcon = CupertinoIcons.hand_thumbsdown;
 const onlyReviewIcon = CupertinoIcons.chat_bubble_text;
 const onlyDeleteIcon = CupertinoIcons.delete;
+const onlySettingIcon = CupertinoIcons.settings;
+const onlyLogoutIcon = Icons.logout;
+const onlyLoginIcon = Icons.login;
+const onlyRegisterIcon = Icons.app_registration_rounded;
