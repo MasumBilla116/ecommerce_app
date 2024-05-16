@@ -5,6 +5,7 @@ import 'package:ecommerce/pages/Home.dart';
 import 'package:ecommerce/pages/OrderPage.dart';
 import 'package:ecommerce/pages/ProductDetailsPage.dart';
 import 'package:ecommerce/pages/ProfileEditPage.dart';
+import 'package:ecommerce/pages/SearchingProductPage.dart';
 import 'package:ecommerce/pages/auth/Login.dart';
 import 'package:ecommerce/pages/auth/Register.dart';
 import 'package:flutter/material.dart';
@@ -70,4 +71,9 @@ goToOrderPage(context) {
 goToProfileEditPage(BuildContext context) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => ProfileEditPage()));
+}
+
+goToSearchPage(context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => SearchingProductPage()));
 }

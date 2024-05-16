@@ -177,7 +177,9 @@ class _HomeState extends State<Home> {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    goToSearchPage(context);
+                  },
                   icon: searchIcon,
                   color: whiteColor,
                 ),

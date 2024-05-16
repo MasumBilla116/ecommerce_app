@@ -6,6 +6,7 @@ import 'package:ecommerce/components/wishlist/emptyWishlist.dart';
 import 'package:ecommerce/language/Language.dart';
 import 'package:ecommerce/method/addToWishlist.dart';
 import 'package:ecommerce/method/addTocart.dart';
+import 'package:ecommerce/pages/CartPage.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/demoData.dart';
 import 'package:ecommerce/utils/icons.dart';
@@ -98,11 +99,23 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  void _goToOrderPage() {
+    goToOrderPage(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return bgTopImage(
       child: Scaffold(
         appBar: zeroAppbar(),
+        bottomSheet: showTapItems == 1
+            ? Row(
+                children: [
+                  bottomSheetBtn(_goToOrderPage, onlyShoppingCartIcon,
+                      Language.load("order_now"), baseColor),
+                ],
+              )
+            : null,
         body: SafeArea(
           child: Column(
             children: [
@@ -182,22 +195,26 @@ class _ProfilePageState extends State<ProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                      child: _boxWidget(context, "in_your_wishlist",
-                          wishlistItem.length, 0, showTapItems),
+                      child: _boxWidget(
+                          context,
+                          Language.load("in_your_wishlist"),
+                          wishlistItem.length,
+                          0,
+                          showTapItems),
                       onTap: () {
                         handleTapItems(0);
                       },
                     ),
                     GestureDetector(
-                      child: _boxWidget(context, "in_your_cart",
+                      child: _boxWidget(context, Language.load("in_your_cart"),
                           cart['total_items'], 1, showTapItems),
                       onTap: () {
                         handleTapItems(1);
                       },
                     ),
                     GestureDetector(
-                      child: _boxWidget(
-                          context, "in_you_ordered", '19', 2, showTapItems),
+                      child: _boxWidget(context,
+                          Language.load("in_you_ordered"), 0, 2, showTapItems),
                       onTap: () {
                         handleTapItems(2);
                       },
@@ -378,7 +395,7 @@ Widget _boxWidget(
           "$total",
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        Text(Language.load(labelKey)),
+        Text(labelKey),
       ],
     ),
   );
