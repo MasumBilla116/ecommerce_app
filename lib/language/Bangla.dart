@@ -96,7 +96,9 @@ Map<String, String> lang = {
   "enter_your_name": "আপনার নাম লিখুন",
   "enter_your_phone_number": "আপনার ফোন নম্বর লিখুন",
   "enter_your_address": "আপনার ঠিকানা লিখুন",
-  "enter_your_shipping_address": "আপনার শিপিং ঠিকানা লিখুন"
+  "enter_your_shipping_address": "আপনার শিপিং ঠিকানা লিখুন",
+  "setting": "সেটিংস",
+  "register": "নিবন্ধন",
 };
 
 String getBanglaLang(String key) {

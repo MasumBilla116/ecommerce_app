@@ -17,65 +17,64 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return bgTopImage(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                Container(
-                  width: 60,
-                  height: 60,
-                  margin: const EdgeInsets.only(top: 80),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white),
-                  padding: const EdgeInsets.all(10),
-                  child: appLogo,
+    return Scaffold(
+      backgroundColor: baseColor,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                margin: const EdgeInsets.only(top: 80),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white),
+                padding: const EdgeInsets.all(10),
+                child: appLogo,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              loginTitle(textColor: Colors.white, fontSize: 12),
+              Container(
+                width: MediaQuery.of(context).size.width - 70,
+                margin: const EdgeInsets.only(top: 30),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: containerBgColorWhite,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [containerBoxShadow],
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                loginTitle(textColor: Colors.white, fontSize: 12),
-                Container(
-                  width: MediaQuery.of(context).size.width - 70,
-                  margin: const EdgeInsets.only(top: 40),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: containerBgColorWhite,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [containerBoxShadow],
-                  ),
-                  child: Column(
-                    children: [
-                      inputField(title: "Email", hintText: emailHintText),
-                      const SizedBox(
-                        height: 10,
+                child: Column(
+                  children: [
+                    inputField(title: "Email", hintText: emailHintText),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    inputField(title: "Password", hintText: passwordHintText),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          goToHomePage(context);
+                        },
+                        child: const Text(forgetPasswordText),
                       ),
-                      inputField(title: "Password", hintText: passwordHintText),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
+                    ),
+                    customButton(title: signinText, btnBgColor: orangeColor),
+                    Align(
+                      alignment: Alignment.center,
+                      child: TextButton(
                           onPressed: () {
-                            goToHomePage(context);
+                            goToRegisterPage(context);
                           },
-                          child: const Text(forgetPasswordText),
-                        ),
-                      ),
-                      customButton(title: signinText, btnBgColor: buttonColor),
-                      Align(
-                        alignment: Alignment.center,
-                        child: TextButton(
-                            onPressed: () {
-                              goToRegisterPage(context);
-                            },
-                            child: const Text(createNewAccount)),
-                      ),
-                    ],
-                  ),
+                          child: const Text(createNewAccount)),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

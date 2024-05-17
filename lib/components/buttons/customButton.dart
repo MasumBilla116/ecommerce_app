@@ -8,6 +8,9 @@ Widget customButton({String? title, Color? btnBgColor}) {
       backgroundColor: btnBgColor,
       padding: const EdgeInsets.all(5),
       fixedSize: const Size(500, double.infinity),
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
     ),
     onPressed: () {},
     child: Text(

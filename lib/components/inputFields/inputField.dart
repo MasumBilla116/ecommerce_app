@@ -2,15 +2,21 @@ import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/const.dart';
 import 'package:flutter/material.dart';
 
-Widget inputField({String? title, String? hintText, maxLine = 1}) {
+Widget inputField(
+    {String? title,
+    String? hintText,
+    maxLine = 1,
+    labelColor = null,
+    inputFieldBgColor = null}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       if (title != null)
         Text(
           title,
-          style:
-              TextStyle(fontSize: inputLabelFontSize, color: inputLabelColor),
+          style: TextStyle(
+              fontSize: inputLabelFontSize,
+              color: labelColor != null ? labelColor : inputLabelColor),
         ),
       TextField(
         maxLines: maxLine,

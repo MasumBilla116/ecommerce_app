@@ -73,7 +73,11 @@ goToProfileEditPage(BuildContext context) {
       context, MaterialPageRoute(builder: (context) => ProfileEditPage()));
 }
 
-goToSearchPage(context) {
+goToSearchPage(context, searchingTitle, searchProductType) {
   Navigator.push(
-      context, MaterialPageRoute(builder: (context) => SearchingProductPage()));
+      context,
+      MaterialPageRoute(
+          builder: (context) => SearchingProductPage(
+              searchingTitle: searchingTitle,
+              searchProductType: searchProductType)));
 }

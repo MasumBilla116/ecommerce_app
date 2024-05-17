@@ -12,6 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SearchingProductPage extends StatefulWidget {
+  final searchingTitle;
+  final searchProductType;
+  const SearchingProductPage(
+      {required this.searchingTitle, required this.searchProductType, Key? key})
+      : super(key: key);
   State<SearchingProductPage> createState() => _SearchingProductPage();
 }
 
@@ -19,7 +24,7 @@ class _SearchingProductPage extends State<SearchingProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWithLeading("Search Your Product", context),
+      appBar: appBarWithLeading(widget.searchingTitle, context),
       body: Column(
         children: [
           Container(

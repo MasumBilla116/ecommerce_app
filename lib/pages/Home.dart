@@ -1,6 +1,5 @@
 import 'package:ecommerce/components/buttons/addToCartAppBarBtn.dart';
 import 'package:ecommerce/components/cart/cartComponent.dart';
-import 'package:ecommerce/components/home/OldhomeComponent.dart';
 import 'package:ecommerce/components/navigation/bottomNavigation.dart';
 import 'package:ecommerce/components/navigation/bottomNavigationController.dart';
 import 'package:ecommerce/components/profile/profileComponent.dart';
@@ -11,6 +10,8 @@ import 'package:ecommerce/pages/CategoryPage.dart';
 import 'package:ecommerce/pages/HomePage.dart';
 import 'package:ecommerce/pages/OrderPage.dart';
 import 'package:ecommerce/pages/ProfilePage.dart';
+import 'package:ecommerce/pages/auth/Login.dart';
+import 'package:ecommerce/pages/auth/Register.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/icons.dart';
 import 'package:ecommerce/utils/navigationMenu.dart';
@@ -163,17 +164,23 @@ class _HomeState extends State<Home> {
   }
 
   final drawerListPageRoute = [
-    Home(),
-    CategoryPage(),
-    CartPage(),
-    ProfilePage(),
+    Register(),
+    Login(),
   ];
 
-  void handleDrawerListRoute(page) {
-    // if (page != null) {
-    //   Navigator.pushReplacement(context,
-    //       MaterialPageRoute(builder: (context) => drawerListPageRoute[page]));
-    // }
+  void handleDrawerListRoute(page, routeType) {
+    if ((routeType == 'index') && (page != null)) {
+      setState(() {
+        btmNavigationController.navigationIndex = page;
+        Navigator.pop(context);
+      });
+    } else if ((routeType == 'page') && (page != null)) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => drawerListPageRoute[page],
+          ));
+    }
   }
 
   @override
@@ -195,37 +202,32 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            drawerListItem(
-                handleDrawerListRoute, 0, Language.load("home"), homeIcon),
-            drawerListItem(handleDrawerListRoute, 1, Language.load("category"),
-                categoryIcon),
-            drawerListItem(handleDrawerListRoute, 2, Language.load("cart"),
-                shoppingCartPlusIcon),
-            drawerListItem(
-                handleDrawerListRoute, 3, Language.load("profile"), personIcon),
-            drawerListItem(handleDrawerListRoute, 0, Language.load("register"),
-                registerIcon),
-            drawerListItem(
-                handleDrawerListRoute, 0, Language.load("login"), loginIcon),
-            drawerListItem(
-                handleDrawerListRoute, 0, Language.load("logout"), logoutIcon),
-            drawerListItem(handleDrawerListRoute, 0, Language.load("setting"),
-                settingIcon),
+            drawerListItem(context, handleDrawerListRoute, 0, "index",
+                Language.load("home"), homeIcon),
+            drawerListItem(context, handleDrawerListRoute, 1, "index",
+                Language.load("category"), categoryIcon),
+            drawerListItem(context, handleDrawerListRoute, 2, "index",
+                Language.load("cart"), shoppingCartPlusIcon),
+            drawerListItem(context, handleDrawerListRoute, 3, "index",
+                Language.load("profile"), personIcon),
+            drawerListItem(context, handleDrawerListRoute, 0, "page",
+                Language.load("register"), registerIcon),
+            drawerListItem(context, handleDrawerListRoute, 1, "page",
+                Language.load("login"), loginIcon),
+            drawerListItem(context, handleDrawerListRoute, null, "page",
+                Language.load("logout"), logoutIcon),
+            drawerListItem(context, handleDrawerListRoute, null, "page",
+                Language.load("setting"), settingIcon),
           ],
         ),
       ),
       appBar: btmNavigationController.navigationIndex != 3
           ? AppBar(
-              // leading: IconButton(
-              //   onPressed: () {},
-              //   icon: const Icon(Icons.menu),
-              //   color: whiteColor,
-              // ),
               iconTheme: const IconThemeData(color: whiteColor),
               actions: [
                 IconButton(
                   onPressed: () {
-                    goToSearchPage(context);
+                    goToSearchPage(context, "Search Your Product", "search");
                   },
                   icon: searchIcon,
                   color: whiteColor,
@@ -250,7 +252,7 @@ class _HomeState extends State<Home> {
   }
 }
 
-Widget drawerListItem(method, index, title, icon) {
+Widget drawerListItem(context, method, index, routeType, title, icon) {
   return Expanded(
     child: Container(
         decoration: const BoxDecoration(
@@ -262,7 +264,7 @@ Widget drawerListItem(method, index, title, icon) {
                     style: BorderStyle.solid))),
         child: GestureDetector(
           onTap: () {
-            method(index);
+            method(index, routeType);
           },
           child: ListTile(
             title: Text(title),

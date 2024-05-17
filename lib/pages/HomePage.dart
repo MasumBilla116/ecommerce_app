@@ -23,6 +23,26 @@ class _HomePageState extends State<HomePage> {
   dynamic wishlistProdctIds = [];
   final _wishlistBox = Hive.box("wishlistBox");
   final cartBox = Hive.box("cartBox");
+  final searchTodayDealOrFlashProduct = [
+    "Today Deal Products",
+    "Flash Deal Products"
+  ];
+  final searchCategoryBrandsToSallerProduct = [
+    "Category Products",
+    "Branded Products",
+    "Top Sales Products"
+  ];
+  final searchBrandedProductTopRow = [
+    "Womens Dresses",
+    "Girls Dresses",
+    "Female Beauty"
+  ];
+  final searchBrandedProductBtmRow = [
+    "Branded Cosmetics",
+    "Girls Ornaments",
+    "Girls Fashion"
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -34,7 +54,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: SafeArea(
@@ -56,6 +76,9 @@ class _HomePageState extends State<HomePage> {
                       children: List.generate(
                         2,
                         (index) => button(
+                          context: context,
+                          searchingTitle: searchTodayDealOrFlashProduct[index],
+                          searchProductType: 'search',
                           width: MediaQuery.of(context).size.width / 2.2,
                           height: MediaQuery.of(context).size.height * 0.1,
                           icon: index == 0
@@ -79,6 +102,10 @@ class _HomePageState extends State<HomePage> {
                       children: List.generate(
                         3,
                         (index) => button(
+                          context: context,
+                          searchingTitle:
+                              searchCategoryBrandsToSallerProduct[index],
+                          searchProductType: 'search',
                           width: MediaQuery.of(context).size.width / 3.5,
                           height: MediaQuery.of(context).size.height * 0.1,
                           icon: index == 0
@@ -113,6 +140,10 @@ class _HomePageState extends State<HomePage> {
                           (index) => Column(
                             children: [
                               button(
+                                context: context,
+                                searchingTitle:
+                                    searchBrandedProductTopRow[index],
+                                searchProductType: 'search',
                                 width: MediaQuery.of(context).size.width / 1.8,
                                 height: MediaQuery.of(context).size.height * .1,
                                 marginLeft: 13.0,
@@ -122,6 +153,10 @@ class _HomePageState extends State<HomePage> {
                               ),
                               spaceTopBottom,
                               button(
+                                context: context,
+                                searchingTitle:
+                                    searchBrandedProductBtmRow[index],
+                                searchProductType: 'search',
                                 width: MediaQuery.of(context).size.width / 1.8,
                                 height: MediaQuery.of(context).size.height * .1,
                                 marginLeft: 13.0,
@@ -153,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                                   children: List.generate(
                                       demoProductList.length,
                                       (index) => productComponent(
-                                          demoProductList[index])),
+                                          context, demoProductList[index])),
                                 ),
                               ],
                             ),
